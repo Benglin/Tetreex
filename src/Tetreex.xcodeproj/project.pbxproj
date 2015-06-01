@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		553F07761B1C3C590076437D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 553F07751B1C3C590076437D /* main.cpp */; };
+		55D9C0451B1C410B0069F43E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55D9C0441B1C410B0069F43E /* Cocoa.framework */; };
+		55D9C0471B1C41320069F43E /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55D9C0461B1C41320069F43E /* SDL2.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,8 @@
 /* Begin PBXFileReference section */
 		553F076B1B1C3AF40076437D /* Tetreex */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Tetreex; sourceTree = BUILT_PRODUCTS_DIR; };
 		553F07751B1C3C590076437D /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		55D9C0441B1C410B0069F43E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		55D9C0461B1C41320069F43E /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +36,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55D9C0471B1C41320069F43E /* SDL2.framework in Frameworks */,
+				55D9C0451B1C410B0069F43E /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +47,8 @@
 		553F07621B1C3AF40076437D = {
 			isa = PBXGroup;
 			children = (
+				55D9C0461B1C41320069F43E /* SDL2.framework */,
+				55D9C0441B1C410B0069F43E /* Cocoa.framework */,
 				553F07751B1C3C590076437D /* main.cpp */,
 				553F076C1B1C3AF40076437D /* Products */,
 			);
@@ -197,7 +205,15 @@
 		553F07731B1C3AF40076437D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
+				FRAMEWORK_SEARCH_PATHS = (
+					/Library/Frameworks,
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/Library/Frameworks/SDL2.framework/Headers,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -205,7 +221,15 @@
 		553F07741B1C3AF40076437D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
+				FRAMEWORK_SEARCH_PATHS = (
+					/Library/Frameworks,
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/Library/Frameworks/SDL2.framework/Headers,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
