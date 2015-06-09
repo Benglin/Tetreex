@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 #include <iostream>
-#include "Tetreex.h"
+#include "../inc/Tetreex.h"
 
 using namespace Tetreex;
 

@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 BEN GOH. All rights reserved.
 //
 
-#include "Tetreex.h"
+#include "../inc/Tetreex.h"
 
 using namespace Tetreex;
 
