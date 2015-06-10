@@ -1,0 +1,258 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		55147EB01B2888810064D8DE /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55147EAF1B2888810064D8DE /* SDL2.framework */; };
+		55147EB91B288AF30064D8DE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55147EB71B288AF30064D8DE /* main.cpp */; };
+		55147EBA1B288AF30064D8DE /* Tetreex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55147EB81B288AF30064D8DE /* Tetreex.cpp */; };
+		55147EBC1B288B320064D8DE /* Tetreex.h in Sources */ = {isa = PBXBuildFile; fileRef = 55147EBB1B288B320064D8DE /* Tetreex.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		55147EA31B2887220064D8DE /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		55147EA51B2887220064D8DE /* Tetreex */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Tetreex; sourceTree = BUILT_PRODUCTS_DIR; };
+		55147EAF1B2888810064D8DE /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
+		55147EB11B2889240064D8DE /* inc */ = {isa = PBXFileReference; lastKnownFileType = folder; name = inc; path = ../inc; sourceTree = "<group>"; };
+		55147EB21B28892C0064D8DE /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; name = src; path = ../src; sourceTree = "<group>"; };
+		55147EB71B288AF30064D8DE /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../src/main.cpp; sourceTree = "<group>"; };
+		55147EB81B288AF30064D8DE /* Tetreex.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Tetreex.cpp; path = ../src/Tetreex.cpp; sourceTree = "<group>"; };
+		55147EBB1B288B320064D8DE /* Tetreex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Tetreex.h; path = ../inc/Tetreex.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		55147EA21B2887220064D8DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55147EB01B2888810064D8DE /* SDL2.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		55147E9C1B2887220064D8DE = {
+			isa = PBXGroup;
+			children = (
+				55147EBB1B288B320064D8DE /* Tetreex.h */,
+				55147EB71B288AF30064D8DE /* main.cpp */,
+				55147EB81B288AF30064D8DE /* Tetreex.cpp */,
+				55147EB21B28892C0064D8DE /* src */,
+				55147EB11B2889240064D8DE /* inc */,
+				55147EAF1B2888810064D8DE /* SDL2.framework */,
+				55147EA61B2887220064D8DE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		55147EA61B2887220064D8DE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				55147EA51B2887220064D8DE /* Tetreex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		55147EA41B2887220064D8DE /* Tetreex */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 55147EAC1B2887220064D8DE /* Build configuration list for PBXNativeTarget "Tetreex" */;
+			buildPhases = (
+				55147EA11B2887220064D8DE /* Sources */,
+				55147EA21B2887220064D8DE /* Frameworks */,
+				55147EA31B2887220064D8DE /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tetreex;
+			productName = Tetreex;
+			productReference = 55147EA51B2887220064D8DE /* Tetreex */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		55147E9D1B2887220064D8DE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Ben Goh";
+				TargetAttributes = {
+					55147EA41B2887220064D8DE = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
+				};
+			};
+			buildConfigurationList = 55147EA01B2887220064D8DE /* Build configuration list for PBXProject "Tetreex" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 55147E9C1B2887220064D8DE;
+			productRefGroup = 55147EA61B2887220064D8DE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				55147EA41B2887220064D8DE /* Tetreex */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		55147EA11B2887220064D8DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55147EBC1B288B320064D8DE /* Tetreex.h in Sources */,
+				55147EB91B288AF30064D8DE /* main.cpp in Sources */,
+				55147EBA1B288AF30064D8DE /* Tetreex.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		55147EAA1B2887220064D8DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		55147EAB1B2887220064D8DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		55147EAD1B2887220064D8DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		55147EAE1B2887220064D8DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		55147EA01B2887220064D8DE /* Build configuration list for PBXProject "Tetreex" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				55147EAA1B2887220064D8DE /* Debug */,
+				55147EAB1B2887220064D8DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		55147EAC1B2887220064D8DE /* Build configuration list for PBXNativeTarget "Tetreex" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				55147EAD1B2887220064D8DE /* Debug */,
+				55147EAE1B2887220064D8DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 55147E9D1B2887220064D8DE /* Project object */;
+}
