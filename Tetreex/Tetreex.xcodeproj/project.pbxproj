@@ -33,6 +33,7 @@
 		55147EB71B288AF30064D8DE /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../src/main.cpp; sourceTree = "<group>"; };
 		55147EB81B288AF30064D8DE /* Tetreex.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Tetreex.cpp; path = ../src/Tetreex.cpp; sourceTree = "<group>"; };
 		55147EBB1B288B320064D8DE /* Tetreex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Tetreex.h; path = ../inc/Tetreex.h; sourceTree = "<group>"; };
+		554C3A621B288C26003F7D41 /* matrix */ = {isa = PBXFileReference; lastKnownFileType = folder; name = matrix; path = ../matrix; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +51,7 @@
 		55147E9C1B2887220064D8DE = {
 			isa = PBXGroup;
 			children = (
+				554C3A621B288C26003F7D41 /* matrix */,
 				55147EBB1B288B320064D8DE /* Tetreex.h */,
 				55147EB71B288AF30064D8DE /* main.cpp */,
 				55147EB81B288AF30064D8DE /* Tetreex.cpp */,
@@ -251,6 +253,7 @@
 				55147EAE1B2887220064D8DE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

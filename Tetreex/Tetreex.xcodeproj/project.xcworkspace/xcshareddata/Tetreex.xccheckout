@@ -7,16 +7,20 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>D97F6D95-C781-4F14-80E8-6F12BE653874</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>Tetreex</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>25BC19AB9FB4F4C5140CFC45DB24FE2DEA3E8D0E</key>
+		<string>https://github.com/adafruit/rpi-rgb-led-matrix.git</string>
 		<key>EDEF02D239D8EAC64ECBDCE99DC05E0588FA2C72</key>
 		<string>https://github.com/Benglin/Tetreex.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Tetreex/Tetreex.xcodeproj/project.xcworkspace</string>
+	<string>Tetreex/Tetreex.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>25BC19AB9FB4F4C5140CFC45DB24FE2DEA3E8D0E</key>
+		<string>../../..matrix/</string>
 		<key>EDEF02D239D8EAC64ECBDCE99DC05E0588FA2C72</key>
 		<string>../../..</string>
 	</dict>
@@ -28,6 +32,14 @@
 	<string>EDEF02D239D8EAC64ECBDCE99DC05E0588FA2C72</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>25BC19AB9FB4F4C5140CFC45DB24FE2DEA3E8D0E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>matrix</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
