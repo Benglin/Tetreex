@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		553F07761B1C3C590076437D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 553F07751B1C3C590076437D /* main.cpp */; };
-		5568E73E1B25AFA200531AA3 /* Tetreex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5568E73D1B25AFA200531AA3 /* Tetreex.cpp */; };
 		55D9C0451B1C410B0069F43E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55D9C0441B1C410B0069F43E /* Cocoa.framework */; };
 		55D9C0471B1C41320069F43E /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55D9C0461B1C41320069F43E /* SDL2.framework */; };
 /* End PBXBuildFile section */
@@ -26,10 +24,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		553F076B1B1C3AF40076437D /* Tetreex */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Tetreex; sourceTree = BUILT_PRODUCTS_DIR; };
-		553F07751B1C3C590076437D /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		5568E73C1B25ACF400531AA3 /* Tetreex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tetreex.h; sourceTree = "<group>"; };
-		5568E73D1B25AFA200531AA3 /* Tetreex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tetreex.cpp; sourceTree = "<group>"; };
+		55147E991B2884C20064D8DE /* inc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = inc; sourceTree = "<group>"; };
+		55147E9A1B2884DC0064D8DE /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; path = src; sourceTree = "<group>"; };
+		553F076B1B1C3AF40076437D /* Tetreex */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = Tetreex; path = /Users/benglin/Development/Tetreex/build/Debug/Tetreex; sourceTree = "<absolute>"; };
 		55D9C0441B1C410B0069F43E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		55D9C0461B1C41320069F43E /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -50,21 +47,11 @@
 		553F07621B1C3AF40076437D = {
 			isa = PBXGroup;
 			children = (
-				5568E73D1B25AFA200531AA3 /* Tetreex.cpp */,
-				5568E73C1B25ACF400531AA3 /* Tetreex.h */,
+				55147E9A1B2884DC0064D8DE /* src */,
+				55147E991B2884C20064D8DE /* inc */,
 				55D9C0461B1C41320069F43E /* SDL2.framework */,
 				55D9C0441B1C410B0069F43E /* Cocoa.framework */,
-				553F07751B1C3C590076437D /* main.cpp */,
-				553F076C1B1C3AF40076437D /* Products */,
 			);
-			sourceTree = "<group>";
-		};
-		553F076C1B1C3AF40076437D /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				553F076B1B1C3AF40076437D /* Tetreex */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -109,7 +96,7 @@
 				en,
 			);
 			mainGroup = 553F07621B1C3AF40076437D;
-			productRefGroup = 553F076C1B1C3AF40076437D /* Products */;
+			productRefGroup = 553F07621B1C3AF40076437D;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -123,8 +110,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				553F07761B1C3C590076437D /* main.cpp in Sources */,
-				5568E73E1B25AFA200531AA3 /* Tetreex.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
