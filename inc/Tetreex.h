@@ -51,6 +51,8 @@ namespace Tetreex
         Game* mpInternalGame;
     };
     
+#ifdef __APPLE__
+    
     class Application : public IApplication
     {
     public:
@@ -65,6 +67,25 @@ namespace Tetreex
         SDL_Window* mpWindow;
         SDL_Surface* mpSurface;
     };
+    
+#else
+    
+    class Application : public IApplication
+    {
+    public:
+        Application();
+        
+    protected:
+        bool InitializeCore();
+        int  RunCore();
+        void DestroyCore();
+        
+    private:
+    };
+
+#endif
+    
+    
 }
 
 

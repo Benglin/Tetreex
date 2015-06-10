@@ -12,6 +12,8 @@
 
 using namespace Tetreex;
 
+#ifdef __APPLE__
+
 Application::Application() :
 mpWindow(nullptr),
 mpSurface(nullptr)
@@ -65,3 +67,25 @@ void Application::DestroyCore()
     SDL_Quit();
     
 }
+
+#else
+
+Application::Application()
+{
+}
+
+bool Application::InitializeCore()
+{
+    return false;
+}
+
+int Application::RunCore()
+{
+    return 0;
+}
+
+void Application::DestroyCore()
+{
+}
+
+#endif
