@@ -14,7 +14,7 @@ _OBJS = main.o Tetreex.o
 OBJS = $(patsubst %,$(TETREEX_OUTDIR)/%,$(_OBJS))
 
 $(TETREEX_OUTDIR)/%.o: $(TETREEX_SRCDIR)/%.cpp $(DEPS)
-	$(CC) -c -o $@ $< $(CFLAGS)
+	$(CC) -c -o $@ $< $(CFLAGS) `sdl2-config --cflags --libs`
 
 tetreex: $(OBJS)
 	$(CC) -o $@ $^ $(CFLAGS)
