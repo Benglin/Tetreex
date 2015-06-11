@@ -15,77 +15,28 @@ namespace Tetreex
 {
     class Game
     {
-        
-    };
-    
-    class IApplication
-    {
-    public:
-        bool Initialize(Game* pGame)
-        {
-            mpInternalGame = pGame;
-            return InitializeCore();
-        }
-        
-        int Run()
-        {
-            return RunCore();
-        }
-        
-        void Destroy()
-        {
-            DestroyCore();
-        }
-        
-    protected:
-        virtual bool InitializeCore() = 0;
-        virtual int  RunCore() = 0;
-        virtual void DestroyCore() = 0;
-        
-        Game* GetInternalGame() const
-        {
-            return this->mpInternalGame;
-        }
-        
-    private:
-        Game* mpInternalGame;
-    };
-    
-#ifdef __APPLE__
-    
-    class Application : public IApplication
-    {
-    public:
-        Application();
-        
-    protected:
-        bool InitializeCore();
-        int  RunCore();
-        void DestroyCore();
-        
-    private:
-        SDL_Window* mpWindow;
-        SDL_Surface* mpSurface;
-    };
-    
-#else
-    
-    class Application : public IApplication
-    {
-    public:
-        Application();
-        
-    protected:
-        bool InitializeCore();
-        int  RunCore();
-        void DestroyCore();
-        
-    private:
     };
 
+    class Application
+    {
+    public:
+
+        Application(Game* pGame);
+        bool Initialize();
+        int  Run();
+        void Destroy();
+
+    private:
+
+#ifdef __APPLE__
+
+        SDL_Window* mpWindow; // Only desktop has concept of windows.
+
 #endif
-    
-    
+
+        SDL_Surface* mpSurface;
+        Game* mpInternalGame;
+    };
 }
 
 

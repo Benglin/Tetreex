@@ -14,22 +14,24 @@ using namespace Tetreex;
 
 #ifdef __APPLE__
 
-Application::Application() :
+Application::Application(Game* pGame) :
 mpWindow(nullptr),
-mpSurface(nullptr)
+mpSurface(nullptr),
+mpInternalGame(pGame)
 {
 }
 
 #else
 
-Application::Application() : 
-mpSurface(nullptr)
+Application::Application(Gmae* pGame) :
+mpSurface(nullptr),
+mpInternalGame(pGame)
 {
 }
-
+	
 #endif
 
-bool Application::InitializeCore()
+bool Application::Initialize()
 {
     // insert code here...
     std::cout << "Initializing SDL framework...\n";
@@ -58,7 +60,7 @@ bool Application::InitializeCore()
     return true;
 }
 
-int Application::RunCore()
+int Application::Run()
 {
     SDL_FillRect(mpSurface, nullptr, SDL_MapRGB(mpSurface->format, 0xff, 0x80, 0x00));
 
@@ -71,7 +73,7 @@ int Application::RunCore()
     return 0;
 }
 
-void Application::DestroyCore()
+void Application::Destroy()
 {
     SDL_DestroyWindow(mpWindow);
     
@@ -82,25 +84,3 @@ void Application::DestroyCore()
     SDL_Quit();
     
 }
-
-#else
-
-Application::Application()
-{
-}
-
-bool Application::InitializeCore()
-{
-    return false;
-}
-
-int Application::RunCore()
-{
-    return 0;
-}
-
-void Application::DestroyCore()
-{
-}
-
-#endif

@@ -13,9 +13,9 @@ using namespace Tetreex;
 int main(int argc, const char * argv[]) {
     
     auto pGame = new Game();
-    auto pApplication = new Application();
+    auto pApplication = new Application(pGame);
     
-    pApplication->Initialize(pGame);
+    pApplication->Initialize();
     pApplication->Run();
     pApplication->Destroy();
     
