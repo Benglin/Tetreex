@@ -16,7 +16,7 @@ OBJS = $(patsubst %,$(TETREEX_OUTDIR)/%,$(_OBJS))
 $(TETREEX_OUTDIR)/%.o: $(TETREEX_SRCDIR)/%.cpp $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-tetreex: $(OBJS)
+tetreex-game: $(OBJS)
 	$(CC) -o $@ $^ $(CFLAGS)
 
 clean:

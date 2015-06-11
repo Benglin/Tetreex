@@ -23,6 +23,7 @@
 *.lib
 
 # Executables
+tetreex-game
 *.exe
 *.out
 *.app
