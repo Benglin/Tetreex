@@ -17,9 +17,9 @@ mpSurface(nullptr),
 mpInternalGame(pGame)
 {
 #ifdef __APPLE__
-    
+
     mpWindow = nullptr;
-    
+
 #endif
 }
 
@@ -47,13 +47,13 @@ bool Application::Initialize()
 
 #else
 
-    
+
     const auto pVideoInfo = SDL_GetVideoInfo();
-    
+
     auto systemX = pVideoInfo->current_w ;
     auto systemY = pVideoInfo->current_h ;
     auto bpp = pVideoInfo->vfmt->BitsPerPixel ;
-    
+
     //Set up screen
     mpSurface = SDL_SetVideoMode( systemX, systemY, bpp, SDL_SWSURFACE );
     if (mpSurface == nullptr)
@@ -61,7 +61,7 @@ bool Application::Initialize()
         std::count << "SDL_SetVideoMode failed\n";
         return 0;
     }
-    
+
 #endif
 
     return true;
@@ -77,10 +77,10 @@ int Application::Run()
 #ifdef __APPLE__
 
     SDL_UpdateWindowSurface(mpWindow);
-    
+
 #else
-    
-    SDL_Flip(mpSurface);
+
+    SDL_RenderPresent(mpSurface);
 
 #endif
 
@@ -96,9 +96,9 @@ void Application::Destroy()
     mpWindow = nullptr;
 
 #endif
-    
+
     mpSurface = nullptr;
-    
+
     std::cout << "Shutting down SDL framework...\n";
     SDL_Quit();
 }
