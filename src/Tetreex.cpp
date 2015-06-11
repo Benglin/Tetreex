@@ -13,7 +13,7 @@
 using namespace Tetreex;
 
 Application::Application(Game* pGame) :
-mpSurface(nullptr),
+mpRenderer(nullptr),
 mpInternalGame(pGame)
 {
 #ifdef __APPLE__
@@ -43,10 +43,9 @@ bool Application::Initialize()
         return false;
     }
 
-    mpSurface = SDL_GetWindowSurface(mpWindow);
+    mpRenderer = SDL_CreateRenderer(mpWindow, -1, 0);
 
 #else
-
 
     const auto pVideoInfo = SDL_GetVideoInfo();
 
@@ -54,9 +53,9 @@ bool Application::Initialize()
     auto systemY = pVideoInfo->current_h ;
     auto bpp = pVideoInfo->vfmt->BitsPerPixel ;
 
-    //Set up screen
-    mpSurface = SDL_SetVideoMode( systemX, systemY, bpp, SDL_SWSURFACE );
-    if (mpSurface == nullptr)
+    // Setup renderer...
+    mpRenderer = ...;
+    if (mpRenderer == nullptr)
     {
         std::count << "SDL_SetVideoMode failed\n";
         return 0;
@@ -69,21 +68,14 @@ bool Application::Initialize()
 
 int Application::Run()
 {
-    SDL_FillRect(mpSurface, nullptr, SDL_MapRGB(mpSurface->format, 0xff, 0x80, 0x00));
-
+    SDL_SetRenderDrawColor(mpRenderer, 0x80, 0xff, 0x40, 0xff);
+    SDL_RenderClear(mpRenderer);
+    
     SDL_Rect rect = { 10, 10, 128, 64 };
-    SDL_FillRect(mpSurface, &rect, SDL_MapRGB(mpSurface->format, 0x00, 0x80, 0xff));
+    SDL_SetRenderDrawColor(mpRenderer, 0x40, 0x80, 0xff, 0xff);
+    SDL_RenderFillRect(mpRenderer, &rect);
 
-#ifdef __APPLE__
-
-    SDL_UpdateWindowSurface(mpWindow);
-
-#else
-
-    SDL_RenderPresent(mpSurface);
-
-#endif
-
+    SDL_RenderPresent(mpRenderer);
     SDL_Delay(2000);
     return 0;
 }
@@ -97,7 +89,7 @@ void Application::Destroy()
 
 #endif
 
-    mpSurface = nullptr;
+    mpRenderer = nullptr;
 
     std::cout << "Shutting down SDL framework...\n";
     SDL_Quit();

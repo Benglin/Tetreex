@@ -34,7 +34,7 @@ namespace Tetreex
 
 #endif
 
-        SDL_Surface* mpSurface;
+        SDL_Renderer* mpRenderer;
         Game* mpInternalGame;
     };
 }
