@@ -1,11 +1,11 @@
-CC=g++
+CC=g++-4.9
 
 # Directories...
 TETREEX_INCDIR=inc
 TETREEX_SRCDIR=src
 TETREEX_OUTDIR=obj
 
-CFLAGS=-I$(TETREEX_INCDIR)
+CFLAGS=-I$(TETREEX_INCDIR) -std=gnu++11
 
 _DEPS = Tetreex.h
 DEPS = $(patsubst %,$(TETREEX_INCDIR)/%,$(_DEPS))

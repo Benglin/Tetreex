@@ -18,8 +18,16 @@ Application::Application() :
 mpWindow(nullptr),
 mpSurface(nullptr)
 {
-    
 }
+
+#else
+
+Application::Application() : 
+mpSurface(nullptr)
+{
+}
+
+#endif
 
 bool Application::InitializeCore()
 {
@@ -29,24 +37,31 @@ bool Application::InitializeCore()
         std::cout << "Video initialization failed!\n";
         return false;
     }
-    
+
+#ifdef __APPLE__
+
     mpWindow = SDL_CreateWindow("Tetreex v0.1",
                                 SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
                                 640, 480, SDL_WINDOW_SHOWN);
-    
+
     if (mpWindow == nullptr) {
         std::cout << "Failed to create window!\n";
         return false;
     }
-    
+
+    mpSurface = SDL_GetWindowSurface(mpWindow);
+
+#else
+
+#endif
+
     return true;
 }
 
 int Application::RunCore()
 {
-    mpSurface = SDL_GetWindowSurface(mpWindow);
     SDL_FillRect(mpSurface, nullptr, SDL_MapRGB(mpSurface->format, 0xff, 0x80, 0x00));
-    
+
     SDL_Rect rect = { 10, 10, 128, 64 };
     SDL_FillRect(mpSurface, &rect, SDL_MapRGB(mpSurface->format, 0x00, 0x80, 0xff));
     
