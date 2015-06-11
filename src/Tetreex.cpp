@@ -12,6 +12,10 @@
 
 using namespace Tetreex;
 
+#ifndef __APPLE__
+#define __APPLE__ 1
+#endif
+
 Application::Application(Game* pGame) :
 mpRenderer(nullptr),
 mpInternalGame(pGame)
@@ -54,10 +58,10 @@ bool Application::Initialize()
     auto bpp = pVideoInfo->vfmt->BitsPerPixel ;
 
     // Setup renderer...
-    mpRenderer = ...;
+    mpRenderer = nullptr;
     if (mpRenderer == nullptr)
     {
-        std::count << "SDL_SetVideoMode failed\n";
+        std::cout << "SDL_SetVideoMode failed\n";
         return 0;
     }
 
@@ -70,7 +74,7 @@ int Application::Run()
 {
     SDL_SetRenderDrawColor(mpRenderer, 0x80, 0xff, 0x40, 0xff);
     SDL_RenderClear(mpRenderer);
-    
+
     SDL_Rect rect = { 10, 10, 128, 64 };
     SDL_SetRenderDrawColor(mpRenderer, 0x40, 0x80, 0xff, 0xff);
     SDL_RenderFillRect(mpRenderer, &rect);

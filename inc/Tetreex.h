@@ -8,6 +8,8 @@
 
 #include "SDL2/SDL.h"
 
+#define __APPLE__ 1
+
 #ifndef Tetreex_Tetreex_h
 #define Tetreex_Tetreex_h
 
