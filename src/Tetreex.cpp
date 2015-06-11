@@ -12,24 +12,16 @@
 
 using namespace Tetreex;
 
-#ifdef __APPLE__
-
 Application::Application(Game* pGame) :
-mpWindow(nullptr),
 mpSurface(nullptr),
 mpInternalGame(pGame)
 {
-}
-
-#else
-
-Application::Application(Gmae* pGame) :
-mpSurface(nullptr),
-mpInternalGame(pGame)
-{
-}
-	
+#ifdef __APPLE__
+    
+    mpWindow = nullptr;
+    
 #endif
+}
 
 bool Application::Initialize()
 {
@@ -55,6 +47,21 @@ bool Application::Initialize()
 
 #else
 
+    
+    const auto pVideoInfo = SDL_GetVideoInfo();
+    
+    auto systemX = pVideoInfo->current_w ;
+    auto systemY = pVideoInfo->current_h ;
+    auto bpp = pVideoInfo->vfmt->BitsPerPixel ;
+    
+    //Set up screen
+    mpSurface = SDL_SetVideoMode( systemX, systemY, bpp, SDL_SWSURFACE );
+    if (mpSurface == nullptr)
+    {
+        std::count << "SDL_SetVideoMode failed\n";
+        return 0;
+    }
+    
 #endif
 
     return true;
@@ -66,21 +73,32 @@ int Application::Run()
 
     SDL_Rect rect = { 10, 10, 128, 64 };
     SDL_FillRect(mpSurface, &rect, SDL_MapRGB(mpSurface->format, 0x00, 0x80, 0xff));
-    
+
+#ifdef __APPLE__
+
     SDL_UpdateWindowSurface(mpWindow);
-    SDL_Delay(2000);
     
+#else
+    
+    SDL_Flip(mpSurface);
+
+#endif
+
+    SDL_Delay(2000);
     return 0;
 }
 
 void Application::Destroy()
 {
+#ifdef __APPLE__
+
     SDL_DestroyWindow(mpWindow);
+    mpWindow = nullptr;
+
+#endif
     
     mpSurface = nullptr;
-    mpWindow = nullptr;
     
     std::cout << "Shutting down SDL framework...\n";
     SDL_Quit();
-    
 }
