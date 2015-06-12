@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 BEN GOH. All rights reserved.
 //
 
+#include <stdexcept>
 #include "SDL2/SDL.h"
 #include "../matrix/include/canvas.h"
 
@@ -15,45 +16,45 @@
 namespace Tetreex
 {
 #ifdef USE_SDL_RENDERER
-    
+
     class PixelBuffer : public rgb_matrix::Canvas
     {
     public:
-        
+
         PixelBuffer(int width, int height);
         virtual ~PixelBuffer();
-        
+
         virtual int width() const;
         virtual int height() const;
-        
+
         virtual void SetPixel(int x, int y,
                               uint8_t red, uint8_t green, uint8_t blue);
-        
+
         virtual void Clear(); // Clear screen to be all black.
         virtual void Fill(uint8_t red, uint8_t green, uint8_t blue);
-        
+
         void Present() const;
-        
+
     private:
-        
+
         int mWidth, mHeight;
         SDL_Renderer* mpRenderer;
         SDL_Window* mpWindow;
     };
-    
+
 #endif
-    
+
     class Game
     {
     public:
-        
+
         Game(rgb_matrix::Canvas* pCanvas);
         ~Game();
-        
+
         void UpdateFrame(void);
-        
+
     private:
-        
+
         rgb_matrix::Canvas* mpCanvas;
     };
 
