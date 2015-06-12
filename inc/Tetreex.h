@@ -36,6 +36,9 @@ namespace Tetreex
         void Present() const;
 
     private:
+        
+        static const int OffsetShift;
+        static const int CellSize;
 
         int mWidth, mHeight;
         SDL_Renderer* mpRenderer;

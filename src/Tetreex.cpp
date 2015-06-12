@@ -18,6 +18,9 @@ using namespace Tetreex;
 // PixelBuffer class definition.
 // =============================================================================
 
+const int PixelBuffer::OffsetShift = 5;
+const int PixelBuffer::CellSize = 32;
+
 PixelBuffer::PixelBuffer(int width, int height) :
 mWidth(width),
 mHeight(height),
@@ -62,28 +65,32 @@ int PixelBuffer::height() const
 void PixelBuffer::SetPixel(int x, int y,
                       uint8_t red, uint8_t green, uint8_t blue)
 {
-    
+    const int left = x << OffsetShift;
+    const int top = y << OffsetShift;
+    SDL_Rect rect = { left, top, CellSize, CellSize };
+
+    SDL_SetRenderDrawColor(mpRenderer, red, green, blue, 0xff);
+    SDL_RenderFillRect(mpRenderer, &rect);
 }
 
 void PixelBuffer::Clear()
 {
+    Fill(0x00, 0x00, 0x00); // Black.
 }
 
 void PixelBuffer::Fill(uint8_t red, uint8_t green, uint8_t blue)
 {
+    const int totalWidth = mWidth * (1 << OffsetShift);
+    const int totalHeight = mHeight * (1 << OffsetShift);
+    SDL_Rect rect = { 0, 0, totalWidth, totalHeight };
+    
+    SDL_SetRenderDrawColor(mpRenderer, red, green, blue, 0xff);
+    SDL_RenderFillRect(mpRenderer, &rect);
 }
 
 void PixelBuffer::Present() const
 {
-    SDL_SetRenderDrawColor(mpRenderer, 0x80, 0xff, 0x40, 0xff);
-    SDL_RenderClear(mpRenderer);
-    
-    SDL_Rect rect = { 10, 10, 128, 64 };
-    SDL_SetRenderDrawColor(mpRenderer, 0x40, 0x80, 0xff, 0xff);
-    SDL_RenderFillRect(mpRenderer, &rect);
-    
     SDL_RenderPresent(mpRenderer);
-    SDL_Delay(2000);
 }
 
 #endif
