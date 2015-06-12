@@ -50,15 +50,25 @@ namespace Tetreex
     class Game
     {
     public:
+        
+        enum class State : unsigned int
+        {
+            None = 0,
+            Over = 1
+        };
 
         Game(rgb_matrix::Canvas* pCanvas);
         ~Game();
 
         void UpdateFrame(void);
+        State CurrentState(void) const;
 
     private:
+        
+        int mFrameCount;
 
         rgb_matrix::Canvas* mpCanvas;
+        State mCurrentState;
     };
 
     class Application

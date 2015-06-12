@@ -8,6 +8,8 @@
 
 #include <stdio.h>
 #include <iostream>
+#include <chrono>
+#include <thread>
 #include "../inc/Tetreex.h"
 
 using namespace Tetreex;
@@ -100,7 +102,9 @@ void PixelBuffer::Present() const
 // =============================================================================
 
 Game::Game(rgb_matrix::Canvas* pCanvas) :
-mpCanvas(pCanvas)
+mpCanvas(pCanvas),
+mFrameCount(0),
+mCurrentState(State::None)
 {
 }
 
@@ -112,12 +116,21 @@ Game::~Game()
 
 void Game::UpdateFrame(void)
 {
+    mFrameCount = mFrameCount + 1;
+    if (mFrameCount >= 1024)
+        mCurrentState = Game::State::Over;
+
 #ifdef USE_SDL_RENDERER
     
     auto pCanvas = ((PixelBuffer*) mpCanvas);
     pCanvas->Present(); // Only for SDL we need to present it.
 
 #endif
+}
+
+Game::State Game::CurrentState(void) const
+{
+    return this->mCurrentState;
 }
 
 // =============================================================================
@@ -138,7 +151,12 @@ bool Application::Initialize()
 
 int Application::Run()
 {
-    mpInternalGame->UpdateFrame();
+    while (mpInternalGame->CurrentState() != Game::State::Over)
+    {
+        mpInternalGame->UpdateFrame(); // Update frame till the game's over.
+        std::this_thread::sleep_for(std::chrono::microseconds(10));
+    }
+    
     return 0;
 }
 
