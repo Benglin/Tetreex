@@ -8,8 +8,6 @@
 
 #include "SDL2/SDL.h"
 
-#define __APPLE__ 1
-
 #ifndef Tetreex_Tetreex_h
 #define Tetreex_Tetreex_h
 
@@ -30,14 +28,9 @@ namespace Tetreex
 
     private:
 
-#ifdef __APPLE__
-
-        SDL_Window* mpWindow; // Only desktop has concept of windows.
-
-#endif
-
         SDL_Renderer* mpRenderer;
         Game* mpInternalGame;
+        SDL_Window* mpWindow;
     };
 }
 

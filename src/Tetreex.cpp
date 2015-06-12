@@ -12,19 +12,11 @@
 
 using namespace Tetreex;
 
-#ifndef __APPLE__
-#define __APPLE__ 1
-#endif
-
 Application::Application(Game* pGame) :
 mpRenderer(nullptr),
+mpWindow(nullptr),
 mpInternalGame(pGame)
 {
-#ifdef __APPLE__
-
-    mpWindow = nullptr;
-
-#endif
 }
 
 bool Application::Initialize()
@@ -36,37 +28,15 @@ bool Application::Initialize()
         return false;
     }
 
-#ifdef __APPLE__
-
     mpWindow = SDL_CreateWindow("Tetreex v0.1",
-                                SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-                                640, 480, SDL_WINDOW_SHOWN);
-
+                                32, 32, 640, 480, SDL_WINDOW_SHOWN);
+    
     if (mpWindow == nullptr) {
         std::cout << "Failed to create window!\n";
         return false;
     }
-
+    
     mpRenderer = SDL_CreateRenderer(mpWindow, -1, 0);
-
-#else
-
-    const auto pVideoInfo = SDL_GetVideoInfo();
-
-    auto systemX = pVideoInfo->current_w ;
-    auto systemY = pVideoInfo->current_h ;
-    auto bpp = pVideoInfo->vfmt->BitsPerPixel ;
-
-    // Setup renderer...
-    mpRenderer = nullptr;
-    if (mpRenderer == nullptr)
-    {
-        std::cout << "SDL_SetVideoMode failed\n";
-        return 0;
-    }
-
-#endif
-
     return true;
 }
 
@@ -86,13 +56,8 @@ int Application::Run()
 
 void Application::Destroy()
 {
-#ifdef __APPLE__
-
     SDL_DestroyWindow(mpWindow);
     mpWindow = nullptr;
-
-#endif
-
     mpRenderer = nullptr;
 
     std::cout << "Shutting down SDL framework...\n";
