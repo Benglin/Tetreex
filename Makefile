@@ -21,3 +21,5 @@ tetreex-game: $(OBJS)
 
 clean:
 	rm -f $(TETREEX_OUTDIR)/*.o *- core $(TETREEX_INCDIR)/*-
+	rm -f tetreex-game
+	rm -rf obj
