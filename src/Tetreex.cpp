@@ -116,6 +116,14 @@ Game::~Game()
 
 void Game::UpdateFrame(void)
 {
+    // If this is the first frame, clear buffer...
+    if (mFrameCount == 0)
+        mpCanvas->Clear();
+    
+    const int x = mFrameCount % mpCanvas->width();
+    const int y = mFrameCount / mpCanvas->height();
+    mpCanvas->SetPixel(x, y, 0x40, 0x80, 0xff);
+    
     mFrameCount = mFrameCount + 1;
     if (mFrameCount >= 1024)
         mCurrentState = Game::State::Over;
@@ -154,7 +162,8 @@ int Application::Run()
     while (mpInternalGame->CurrentState() != Game::State::Over)
     {
         mpInternalGame->UpdateFrame(); // Update frame till the game's over.
-        std::this_thread::sleep_for(std::chrono::microseconds(10));
+        SDL_Delay(500);
+        // std::this_thread::sleep_for(std::chrono::microseconds(500));
     }
     
     return 0;
