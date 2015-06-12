@@ -11,6 +11,7 @@
 		55147EB91B288AF30064D8DE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55147EB71B288AF30064D8DE /* main.cpp */; };
 		55147EBA1B288AF30064D8DE /* Tetreex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55147EB81B288AF30064D8DE /* Tetreex.cpp */; };
 		55147EBC1B288B320064D8DE /* Tetreex.h in Sources */ = {isa = PBXBuildFile; fileRef = 55147EBB1B288B320064D8DE /* Tetreex.h */; };
+		55E2A24C1B2B2174009F3466 /* canvas.h in Sources */ = {isa = PBXBuildFile; fileRef = 55E2A24B1B2B2174009F3466 /* canvas.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +35,7 @@
 		55147EB81B288AF30064D8DE /* Tetreex.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Tetreex.cpp; path = ../src/Tetreex.cpp; sourceTree = "<group>"; };
 		55147EBB1B288B320064D8DE /* Tetreex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Tetreex.h; path = ../inc/Tetreex.h; sourceTree = "<group>"; };
 		554C3A621B288C26003F7D41 /* matrix */ = {isa = PBXFileReference; lastKnownFileType = folder; name = matrix; path = ../matrix; sourceTree = "<group>"; };
+		55E2A24B1B2B2174009F3466 /* canvas.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = canvas.h; path = ../matrix/include/canvas.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +53,7 @@
 		55147E9C1B2887220064D8DE = {
 			isa = PBXGroup;
 			children = (
+				55E2A24B1B2B2174009F3466 /* canvas.h */,
 				554C3A621B288C26003F7D41 /* matrix */,
 				55147EBB1B288B320064D8DE /* Tetreex.h */,
 				55147EB71B288AF30064D8DE /* main.cpp */,
@@ -126,6 +129,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55E2A24C1B2B2174009F3466 /* canvas.h in Sources */,
 				55147EBC1B288B320064D8DE /* Tetreex.h in Sources */,
 				55147EB91B288AF30064D8DE /* main.cpp in Sources */,
 				55147EBA1B288AF30064D8DE /* Tetreex.cpp in Sources */,
@@ -219,6 +223,10 @@
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					USE_SDL_RENDERER,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -230,6 +238,7 @@
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
+				GCC_PREPROCESSOR_DEFINITIONS = USE_SDL_RENDERER;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
