@@ -8,6 +8,7 @@
 
 #include <stdexcept>
 #include "SDL2/SDL.h"
+#include "SDL2_mixer/SDL_mixer.h"
 #include "../matrix/include/canvas.h"
 
 #ifndef Tetreex_Tetreex_h

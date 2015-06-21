@@ -12,6 +12,7 @@
 		55147EBA1B288AF30064D8DE /* Tetreex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55147EB81B288AF30064D8DE /* Tetreex.cpp */; };
 		55147EBC1B288B320064D8DE /* Tetreex.h in Sources */ = {isa = PBXBuildFile; fileRef = 55147EBB1B288B320064D8DE /* Tetreex.h */; };
 		55E2A24C1B2B2174009F3466 /* canvas.h in Sources */ = {isa = PBXBuildFile; fileRef = 55E2A24B1B2B2174009F3466 /* canvas.h */; };
+		55E34EA71B36E02F0036BCA2 /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E34EA61B36E02F0036BCA2 /* SDL2_mixer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -36,6 +37,7 @@
 		55147EBB1B288B320064D8DE /* Tetreex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Tetreex.h; path = ../inc/Tetreex.h; sourceTree = "<group>"; };
 		554C3A621B288C26003F7D41 /* matrix */ = {isa = PBXFileReference; lastKnownFileType = folder; name = matrix; path = ../matrix; sourceTree = "<group>"; };
 		55E2A24B1B2B2174009F3466 /* canvas.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = canvas.h; path = ../matrix/include/canvas.h; sourceTree = "<group>"; };
+		55E34EA61B36E02F0036BCA2 /* SDL2_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_mixer.framework; path = ../../../../../Library/Frameworks/SDL2_mixer.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55E34EA71B36E02F0036BCA2 /* SDL2_mixer.framework in Frameworks */,
 				55147EB01B2888810064D8DE /* SDL2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -53,6 +56,7 @@
 		55147E9C1B2887220064D8DE = {
 			isa = PBXGroup;
 			children = (
+				55E34EA61B36E02F0036BCA2 /* SDL2_mixer.framework */,
 				55E2A24B1B2B2174009F3466 /* canvas.h */,
 				554C3A621B288C26003F7D41 /* matrix */,
 				55147EBB1B288B320064D8DE /* Tetreex.h */,
