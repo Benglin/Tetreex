@@ -128,6 +128,10 @@ mpBackgroundMusic(nullptr)
 AudioDevice::~AudioDevice()
 {
     if (mpBackgroundMusic != nullptr) {
+
+        if (Mix_PlayingMusic() != 0)
+            Mix_HaltMusic(); // Stop music if it is playing.
+
         Mix_FreeMusic(mpBackgroundMusic);
         mpBackgroundMusic = nullptr;
     }
