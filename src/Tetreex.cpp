@@ -36,10 +36,10 @@ mpWindow(nullptr)
 
     mpWindow = SDL_CreateWindow("Tetreex v0.1",
                                 32, 32, 640, 480, SDL_WINDOW_SHOWN);
-    
+
     if (mpWindow == nullptr)
         throw std::runtime_error("Failed to create window");
-    
+
     mpRenderer = SDL_CreateRenderer(mpWindow, -1, 0);
 }
 
@@ -48,7 +48,7 @@ PixelBuffer::~PixelBuffer()
     SDL_DestroyWindow(mpWindow);
     mpWindow = nullptr;
     mpRenderer = nullptr;
-    
+
     std::cout << "Shutting down SDL framework...\n";
     SDL_Quit();
     std::cout << "SDL framework shut down\n";
@@ -85,7 +85,7 @@ void PixelBuffer::Fill(uint8_t red, uint8_t green, uint8_t blue)
     const int totalWidth = mWidth * (1 << OffsetShift);
     const int totalHeight = mHeight * (1 << OffsetShift);
     SDL_Rect rect = { 0, 0, totalWidth, totalHeight };
-    
+
     SDL_SetRenderDrawColor(mpRenderer, red, green, blue, 0xff);
     SDL_RenderFillRect(mpRenderer, &rect);
 }
@@ -189,7 +189,7 @@ Game::~Game()
 {
     delete mpAudioDevice;
     mpAudioDevice = nullptr;
-    
+
     delete mpCanvas;
     mpCanvas = nullptr;
 }
@@ -199,17 +199,17 @@ void Game::UpdateFrame(void)
     // If this is the first frame, clear buffer...
     if (mFrameCount == 0)
         mpCanvas->Clear();
-    
+
     const int x = mFrameCount % mpCanvas->width();
     const int y = mFrameCount / mpCanvas->height();
     mpCanvas->SetPixel(x, y, 0x40, 0x80, 0xff);
-    
+
     mFrameCount = mFrameCount + 1;
     if (mFrameCount >= 1024)
         mCurrentState = Game::State::Over;
 
 #ifdef USE_SDL_RENDERER
-    
+
     auto pCanvas = ((PixelBuffer*) mpCanvas);
     pCanvas->Present(); // Only for SDL we need to present it.
 
@@ -245,7 +245,7 @@ int Application::Run()
         SDL_Delay(500);
         // std::this_thread::sleep_for(std::chrono::microseconds(500));
     }
-    
+
     return 0;
 }
 

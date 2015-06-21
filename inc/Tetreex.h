@@ -8,7 +8,7 @@
 
 #include <stdexcept>
 #include "SDL2/SDL.h"
-#include "SDL2_mixer/SDL_mixer.h"
+#include "SDL_mixer.h"
 #include "../matrix/include/canvas.h"
 
 #ifndef Tetreex_Tetreex_h
@@ -37,7 +37,7 @@ namespace Tetreex
         void Present() const;
 
     private:
-        
+
         static const int OffsetShift;
         static const int CellSize;
 
@@ -67,7 +67,7 @@ namespace Tetreex
     class Game
     {
     public:
-        
+
         enum class State : unsigned int
         {
             None = 0,
