@@ -86,6 +86,7 @@ namespace Tetreex
 
         rgb_matrix::Canvas* mpCanvas;
         State mCurrentState;
+        AudioDevice* mpAudioDevice;
     };
 
     class Application

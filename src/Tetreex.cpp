@@ -177,12 +177,19 @@ void AudioDevice::PlayBackgroundMusic(bool play) const
 Game::Game(rgb_matrix::Canvas* pCanvas) :
 mpCanvas(pCanvas),
 mFrameCount(0),
-mCurrentState(State::None)
+mCurrentState(State::None),
+mpAudioDevice(nullptr)
 {
+    mpAudioDevice = new AudioDevice();
+    mpAudioDevice->LoadMediaFiles();
+    mpAudioDevice->PlayBackgroundMusic(true);
 }
 
 Game::~Game()
 {
+    delete mpAudioDevice;
+    mpAudioDevice = nullptr;
+    
     delete mpCanvas;
     mpCanvas = nullptr;
 }
