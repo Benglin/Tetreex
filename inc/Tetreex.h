@@ -48,6 +48,22 @@ namespace Tetreex
 
 #endif
 
+    class AudioDevice
+    {
+    public:
+        AudioDevice();
+        ~AudioDevice();
+
+        bool LoadMediaFiles();
+        void PlayBackgroundMusic(bool play) const;
+
+    private:
+
+        static const int ChunkSize;
+
+        Mix_Music* mpBackgroundMusic;
+    };
+
     class Game
     {
     public:
