@@ -8,7 +8,13 @@
 
 #include <stdexcept>
 #include "SDL2/SDL.h"
+
+#ifdef __APPLE__
+#include "SDL2_mixer/SDL_mixer.h"
+#else
 #include "SDL_mixer.h"
+#endif
+
 #include "../matrix/include/canvas.h"
 
 #ifndef Tetreex_Tetreex_h
