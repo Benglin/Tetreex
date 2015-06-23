@@ -79,10 +79,24 @@ namespace Tetreex
             None = 0,
             Over = 1
         };
+        
+        enum class Input : unsigned int
+        {
+            None = 0,
+            Left,
+            Top,
+            Right,
+            Bottom,
+            Button0,
+            Button1,
+            Button2,
+            Escape
+        };
 
         Game(rgb_matrix::Canvas* pCanvas);
         ~Game();
 
+        void HandleInput(Game::Input input);
         void UpdateFrame(void);
         State CurrentState(void) const;
 

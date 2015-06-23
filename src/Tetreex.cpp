@@ -194,6 +194,19 @@ Game::~Game()
     mpCanvas = nullptr;
 }
 
+void Game::HandleInput(Game::Input input)
+{
+    switch (input)
+    {
+        case Game::Input::Escape:
+            mCurrentState = Game::State::Over;
+            break;
+            
+        default:
+            break;
+    }
+}
+
 void Game::UpdateFrame(void)
 {
     // If this is the first frame, clear buffer...
