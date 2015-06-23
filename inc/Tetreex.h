@@ -120,6 +120,8 @@ namespace Tetreex
 
     private:
 
+        void ProcessInputEvents();
+
         Game* mpInternalGame;
     };
 }
