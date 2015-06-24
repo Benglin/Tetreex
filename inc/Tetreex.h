@@ -15,13 +15,15 @@
 #include "SDL_mixer.h"
 #endif
 
-#include "../matrix/include/canvas.h"
+#include "../matrix/include/graphics.h"
 
 #ifndef Tetreex_Tetreex_h
 #define Tetreex_Tetreex_h
 
 namespace Tetreex
 {
+    class Board; // Forward declaration.
+
 #ifdef USE_SDL_RENDERER
 
     class PixelBuffer : public rgb_matrix::Canvas
@@ -29,18 +31,18 @@ namespace Tetreex
     public:
 
         PixelBuffer(int width, int height);
-        virtual ~PixelBuffer();
+        virtual ~PixelBuffer(void);
 
-        virtual int width() const;
-        virtual int height() const;
+        virtual int width(void) const;
+        virtual int height(void) const;
 
         virtual void SetPixel(int x, int y,
                               uint8_t red, uint8_t green, uint8_t blue);
 
-        virtual void Clear(); // Clear screen to be all black.
+        virtual void Clear(void); // Clear screen to be all black.
         virtual void Fill(uint8_t red, uint8_t green, uint8_t blue);
 
-        void Present() const;
+        void Present(void) const;
 
     private:
 
@@ -57,10 +59,10 @@ namespace Tetreex
     class AudioDevice
     {
     public:
-        AudioDevice();
-        ~AudioDevice();
+        AudioDevice(void);
+        ~AudioDevice(void);
 
-        bool LoadMediaFiles();
+        bool LoadMediaFiles(void);
         void PlayBackgroundMusic(bool play) const;
 
     private:
@@ -68,6 +70,49 @@ namespace Tetreex
         static const int ChunkSize;
 
         Mix_Music* mpBackgroundMusic;
+    };
+
+    class Tetromino
+    {
+    public:
+
+        enum class Type : unsigned int
+        {
+            I, O, T, J, L, S, Z
+        };
+
+        enum class Rotation : unsigned int
+        {
+            ClockWise, CounterClockWise
+        };
+
+        enum class Direction : unsigned int
+        {
+            Left, Right, Down
+        };
+
+        Tetromino(Board* pBoard);
+
+        bool CanMove(Direction direction) const;
+        bool CanRotate(Rotation rotation) const;
+
+        void Move(Direction direction);
+        void Rotate(Rotation rotation);
+
+    private:
+
+        rgb_matrix::Color mColor;
+    };
+
+    class Board
+    {
+    public:
+
+        bool IsGameOver(void) const;
+        bool HasActiveTetromino(void) const;
+
+        void AdvanceTetromino(void);
+        void AddTetromino(Tetromino* pTetromino);
     };
 
     class Game
@@ -94,7 +139,7 @@ namespace Tetreex
         };
 
         Game(rgb_matrix::Canvas* pCanvas);
-        ~Game();
+        ~Game(void);
 
         void HandleInput(Game::Input input);
         void UpdateFrame(void);
@@ -114,13 +159,13 @@ namespace Tetreex
     public:
 
         Application(Game* pGame);
-        bool Initialize();
-        int  Run();
-        void Destroy();
+        bool Initialize(void);
+        int  Run(void);
+        void Destroy(void);
 
     private:
 
-        void ProcessInputEvents();
+        void ProcessInputEvents(void);
 
         Game* mpInternalGame;
     };
