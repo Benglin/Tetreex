@@ -71,12 +71,10 @@ void Tetromino::Move(Direction direction)
 
 void Tetromino::Rotate(Rotation rotation)
 {
-    
 }
 
 void Tetromino::FuseOnBoard(void) const
 {
-    
 }
 
 void Tetromino::Initialize(void)
@@ -89,10 +87,26 @@ void Tetromino::Initialize(void)
 
 void Tetromino::Clear(void) const
 {
-    
 }
 
 void Tetromino::Draw(void) const
 {
-    
+    for (auto y = 0; y < 4; y++)
+    {
+        auto ty = mY + y; // Target x-coordinate.
+        if (ty < 0 || (ty >= mpBoard->Height()))
+            continue;
+
+        auto pRowPointer = mpBoard->ContentAt(0, y);
+        for (auto x = 0; x < 4; x++)
+        {
+            auto tx = mX + x;
+            if (tx >= 0 && (x < mpBoard->Width()))
+            {
+                auto flags = mMoldData.mBits[y][x];
+                auto color = flags & mMoldData.mColor;
+                *(pRowPointer + tx) = color;
+            }
+        }
+    }
 }
