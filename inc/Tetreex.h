@@ -126,12 +126,23 @@ namespace Tetreex
     class Board
     {
     public:
+        Board(int width, int height, rgb_matrix::Canvas* pCanvas);
+        ~Board();
 
+        int Width(void) const;
+        int Height(void) const;
         bool IsGameOver(void) const;
         bool HasActiveTetromino(void) const;
+        unsigned int* ContentAt(int x, int y) const;
 
-        void AdvanceTetromino(void);
+        bool AdvanceTetromino(void);
         void AddTetromino(Tetromino* pTetromino);
+        void RefreshRegion(int x, int y, int width, int height) const;
+        
+    private:
+        int mWidth, mHeight;
+        unsigned int* mpContent;
+        rgb_matrix::Canvas* mpCanvas;
     };
 
     class Game
