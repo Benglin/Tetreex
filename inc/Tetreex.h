@@ -71,6 +71,15 @@ namespace Tetreex
 
         Mix_Music* mpBackgroundMusic;
     };
+    
+    struct Mold
+    {
+    public:
+        
+        int mBoundingSize;
+        unsigned int mColor; // 0xAaBbGgRr
+        unsigned int mBits[4][4];
+    };
 
     class Tetromino
     {
@@ -78,7 +87,7 @@ namespace Tetreex
 
         enum class Type : unsigned int
         {
-            I, O, T, J, L, S, Z
+            I, O, T, J, L, S, Z, Max
         };
 
         enum class Rotation : unsigned int
@@ -98,10 +107,20 @@ namespace Tetreex
 
         void Move(Direction direction);
         void Rotate(Rotation rotation);
+        void FuseOnBoard(void) const;
 
     private:
 
-        rgb_matrix::Color mColor;
+        static const Mold Molds[];
+
+        void Initialize(void);
+        void Clear(void) const;
+        void Draw(void) const;
+
+        int mX, mY, mWidth, mHeight;
+        Tetromino::Type mType;
+        Mold mMoldData;
+        Board* mpBoard;
     };
 
     class Board
