@@ -133,13 +133,17 @@ namespace Tetreex
         int Height(void) const;
         bool IsGameOver(void) const;
         bool HasActiveTetromino(void) const;
-        unsigned int* ContentAt(int x, int y) const;
+        void SetColor(int x, int y, unsigned int color);
 
         bool AdvanceTetromino(void);
         void AddTetromino(Tetromino* pTetromino);
         void RefreshRegion(int x, int y, int width, int height) const;
         
     private:
+
+        unsigned int* PixelAt(int x, int y) const;
+        unsigned int* PixelAtUnsafe(int x, int y) const;
+
         int mWidth, mHeight;
         unsigned int* mpContent;
         rgb_matrix::Canvas* mpCanvas;

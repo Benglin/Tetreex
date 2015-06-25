@@ -39,9 +39,11 @@ bool Board::HasActiveTetromino(void) const
     return false;
 }
 
-unsigned int* Board::ContentAt(int x, int y) const
+void Board::SetColor(int x, int y, unsigned int color)
 {
-    return &(mpContent[(y * mWidth) + x]);
+    auto pPixel = PixelAt(x, y);
+    if (pPixel != nullptr)
+        *pPixel = color;
 }
 
 bool Board::AdvanceTetromino(void)
@@ -75,10 +77,10 @@ void Board::RefreshRegion(int x, int y, int width, int height) const
 
     for (auto h = 0; h < height; h++)
     {
-        auto pData = ContentAt(x, y + h);
+        auto pPixel = PixelAtUnsafe(x, y + h);
         for (auto w = 0; w < width; w++)
         {
-            auto color = *(pData + w);
+            auto color = *(pPixel + w);
 
             auto red   = ((color & 0x000000ff) >>  0);
             auto green = ((color & 0x0000ff00) >>  8);
@@ -86,4 +88,19 @@ void Board::RefreshRegion(int x, int y, int width, int height) const
             mpCanvas->SetPixel(x + w, y + h, red, green, blue);
         }
     }
+}
+
+unsigned int* Board::PixelAt(int x, int y) const
+{
+    if (x < 0 || (x >= mWidth))
+        return nullptr;
+    if (y < 0 || (y >= mHeight))
+        return nullptr;
+
+    return PixelAtUnsafe(x, y);
+}
+
+unsigned int* Board::PixelAtUnsafe(int x, int y) const
+{
+    return &(mpContent[(y * mWidth) + x]);
 }

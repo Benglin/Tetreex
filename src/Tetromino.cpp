@@ -91,21 +91,28 @@ void Tetromino::Clear(void) const
 
 void Tetromino::Draw(void) const
 {
-    for (auto y = 0; y < 4; y++)
+    auto boardWidth   = mpBoard->Width();
+    auto boardHeight  = mpBoard->Height();
+    auto boundingSize = mMoldData.mBoundingSize;
+
+    for (auto y = 0; y < boundingSize; y++)
     {
-        auto ty = mY + y; // Target x-coordinate.
-        if (ty < 0 || (ty >= mpBoard->Height()))
+        auto ty = mY + y; // Target y-coordinate.
+        if (ty < 0 || (ty >= boardHeight))
             continue;
 
-        auto pRowPointer = mpBoard->ContentAt(0, y);
-        for (auto x = 0; x < 4; x++)
+        for (auto x = 0; x < boundingSize; x++)
         {
-            auto tx = mX + x;
-            if (tx >= 0 && (x < mpBoard->Width()))
+            auto tx = mX + x; // Target x-coordinate.
+            if (tx >= 0 && (x < boardWidth))
             {
                 auto flags = mMoldData.mBits[y][x];
-                auto color = flags & mMoldData.mColor;
-                *(pRowPointer + tx) = color;
+                if (flags != 0x00000000)
+                {
+                    // Draw only if it's not a blank.
+                    auto color = flags & mMoldData.mColor;
+                    mpBoard->SetColor(tx, ty, color);
+                }
             }
         }
     }
