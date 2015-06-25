@@ -65,7 +65,7 @@ void Tetromino::Move(Direction direction)
                 break;
         }
 
-        this->Draw();
+        this->Draw(mMoldData.mColor);
     }
 }
 
@@ -87,9 +87,10 @@ void Tetromino::Initialize(void)
 
 void Tetromino::Clear(void) const
 {
+    Draw(0x00000000);
 }
 
-void Tetromino::Draw(void) const
+void Tetromino::Draw(unsigned int color) const
 {
     auto boardWidth   = mpBoard->Width();
     auto boardHeight  = mpBoard->Height();
@@ -110,7 +111,7 @@ void Tetromino::Draw(void) const
                 if (flags != 0x00000000)
                 {
                     // Draw only if it's not a blank.
-                    auto color = flags & mMoldData.mColor;
+                    color = flags & color;
                     mpBoard->SetColor(tx, ty, color);
                 }
             }

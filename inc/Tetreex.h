@@ -115,7 +115,7 @@ namespace Tetreex
 
         void Initialize(void);
         void Clear(void) const;
-        void Draw(void) const;
+        void Draw(unsigned int color) const;
 
         int mX, mY, mWidth, mHeight;
         Tetromino::Type mType;
