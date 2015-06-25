@@ -102,9 +102,6 @@ namespace Tetreex
 
         Tetromino(Board* pBoard);
 
-        bool CanMove(Direction direction) const;
-        bool CanRotate(Rotation rotation) const;
-
         void Move(Direction direction);
         void Rotate(Rotation rotation);
         void FuseOnBoard(void) const;
@@ -116,6 +113,9 @@ namespace Tetreex
         void Initialize(void);
         void Clear(void) const;
         void Draw(unsigned int color) const;
+
+        bool CanMove(Direction direction) const;
+        bool CanRotate(Rotation rotation) const;
 
         int mX, mY, mWidth, mHeight;
         Tetromino::Type mType;
@@ -133,9 +133,11 @@ namespace Tetreex
         int Height(void) const;
         bool IsGameOver(void) const;
         bool HasActiveTetromino(void) const;
+        void FuseActiveTetromino(void);
         void SetColor(int x, int y, unsigned int color);
 
         bool AdvanceTetromino(void);
+        void MoveTetromino(Tetromino::Direction direction);
         void AddTetromino(Tetromino* pTetromino);
         void RefreshRegion(int x, int y, int width, int height) const;
         

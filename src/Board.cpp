@@ -44,6 +44,15 @@ bool Board::HasActiveTetromino(void) const
     return mpActiveTetromino != nullptr;
 }
 
+void Board::FuseActiveTetromino(void)
+{
+    if (mpActiveTetromino != nullptr) {
+        mpActiveTetromino->FuseOnBoard();
+        delete mpActiveTetromino;
+        mpActiveTetromino = nullptr;
+    }
+}
+
 void Board::SetColor(int x, int y, unsigned int color)
 {
     auto pPixel = PixelAt(x, y);
@@ -54,6 +63,12 @@ void Board::SetColor(int x, int y, unsigned int color)
 bool Board::AdvanceTetromino(void)
 {
     return true; // Advancement successful.
+}
+
+void Board::MoveTetromino(Tetromino::Direction direction)
+{
+    if (mpActiveTetromino != nullptr)
+        mpActiveTetromino->Move(direction);
 }
 
 void Board::AddTetromino(Tetromino* pTetromino)
