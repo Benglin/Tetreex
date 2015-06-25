@@ -36,6 +36,16 @@ mpBoard(pBoard)
 {
 }
 
+bool Tetromino::CanMove(Direction direction) const
+{
+    return true;
+}
+
+bool Tetromino::CanRotate(Rotation rotation) const
+{
+    return true;
+}
+
 void Tetromino::Move(Direction direction)
 {
     if (!CanMove(direction))
@@ -120,14 +130,4 @@ void Tetromino::Draw(unsigned int color) const
             }
         }
     }
-}
-
-bool Tetromino::CanMove(Direction direction) const
-{
-    return true;
-}
-
-bool Tetromino::CanRotate(Rotation rotation) const
-{
-    return true;
 }

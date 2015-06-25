@@ -62,7 +62,17 @@ void Board::SetColor(int x, int y, unsigned int color)
 
 bool Board::AdvanceTetromino(void)
 {
-    return true; // Advancement successful.
+    if (mpActiveTetromino == nullptr)
+        return false; // Nothing to advance.
+
+    if (!mpActiveTetromino->CanMove(Tetromino::Direction::Down))
+        this->FuseActiveTetromino(); // Cannot move further.
+
+    // If there's no more active tetromino, then it means it's
+    // been fused to the board. In this case the method returns
+    // false, indicating that it is time for a new tetromino.
+    //
+    return mpActiveTetromino != nullptr;
 }
 
 void Board::MoveTetromino(Tetromino::Direction direction)
