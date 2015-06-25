@@ -1,4 +1,5 @@
 
+#include <iostream>
 #include "../inc/Tetreex.h"
 
 using namespace Tetreex;
@@ -6,7 +7,8 @@ using namespace Tetreex;
 Board::Board(int width, int height, rgb_matrix::Canvas* pCanvas) :
 mWidth(width),
 mHeight(height),
-mpCanvas(pCanvas)
+mpCanvas(pCanvas),
+mpActiveTetromino(nullptr)
 {
     auto elements = mWidth * mHeight;
     mpContent = new unsigned int[elements];
@@ -15,6 +17,9 @@ mpCanvas(pCanvas)
 
 Board::~Board()
 {
+    delete mpActiveTetromino;
+    mpActiveTetromino = nullptr;
+
     delete[] mpContent;
     mpContent = nullptr;
 }
@@ -36,7 +41,7 @@ bool Board::IsGameOver(void) const
 
 bool Board::HasActiveTetromino(void) const
 {
-    return false;
+    return mpActiveTetromino != nullptr;
 }
 
 void Board::SetColor(int x, int y, unsigned int color)
@@ -53,6 +58,13 @@ bool Board::AdvanceTetromino(void)
 
 void Board::AddTetromino(Tetromino* pTetromino)
 {
+    if (mpActiveTetromino != nullptr) {
+        std::cout << "Invalid call to Board::AddTetromino";
+        return;
+    }
+
+    mpActiveTetromino = pTetromino;
+    mpActiveTetromino->Move(Tetromino::Direction::Down);
 }
 
 void Board::RefreshRegion(int x, int y, int width, int height) const

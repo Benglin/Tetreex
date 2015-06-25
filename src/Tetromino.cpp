@@ -48,25 +48,38 @@ bool Tetromino::CanRotate(Rotation rotation) const
 
 void Tetromino::Move(Direction direction)
 {
-    if (CanMove(direction))
+    if (!CanMove(direction))
+        return;
+
+    auto oldX = mX, oldY = mY;
+    auto widthToRefresh = mMoldData.mBoundingSize;
+    auto heightToRefresh = mMoldData.mBoundingSize;
+
+    this->Clear(); // Clear the existing region.
+
+    switch (direction)
     {
-        this->Clear();
-
-        switch (direction)
-        {
-            case Direction::Left:
-                mX = mX - 1;
-                break;
-            case Direction::Right:
-                mX = mX + 1;
-                break;
-            case Direction::Down:
-                mY = mY + 1;
-                break;
-        }
-
-        this->Draw(mMoldData.mColor);
+        case Direction::Left:
+            mX = mX - 1;
+            widthToRefresh++;
+            break;
+        case Direction::Right:
+            mX = mX + 1;
+            widthToRefresh++;
+            break;
+        case Direction::Down:
+            mY = mY + 1;
+            heightToRefresh++;
+            break;
     }
+
+    this->Draw(mMoldData.mColor); // Render at new location.
+
+    // Flush the contents of board to canvas.
+    mpBoard->RefreshRegion(oldX < mX ? oldX : mX,
+                           oldY < mY ? oldY : mY,
+                           widthToRefresh,
+                           heightToRefresh);
 }
 
 void Tetromino::Rotate(Rotation rotation)

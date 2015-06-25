@@ -8,11 +8,17 @@ Game::Game(rgb_matrix::Canvas* pCanvas) :
 mpCanvas(pCanvas),
 mFrameCount(0),
 mCurrentState(State::None),
+mpBoard(nullptr),
 mpAudioDevice(nullptr)
 {
     mpAudioDevice = new AudioDevice();
     mpAudioDevice->LoadMediaFiles();
     mpAudioDevice->PlayBackgroundMusic(true);
+
+    mpBoard = new Board(32, 32, mpCanvas);
+
+    auto pTetromino = new Tetromino(mpBoard);
+    mpBoard->AddTetromino(pTetromino);
 }
 
 Game::~Game()

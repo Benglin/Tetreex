@@ -146,6 +146,8 @@ namespace Tetreex
 
         int mWidth, mHeight;
         unsigned int* mpContent;
+        
+        Tetromino* mpActiveTetromino;
         rgb_matrix::Canvas* mpCanvas;
     };
 
@@ -185,6 +187,7 @@ namespace Tetreex
 
         rgb_matrix::Canvas* mpCanvas;
         State mCurrentState;
+        Board* mpBoard;
         AudioDevice* mpAudioDevice;
     };
 
