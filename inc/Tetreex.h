@@ -46,8 +46,7 @@ namespace Tetreex
 
     private:
 
-        static const int OffsetShift;
-        static const int CellSize;
+        static const int ScaleFactor;
 
         int mWidth, mHeight;
         unsigned int* mpInternalBuffer;
