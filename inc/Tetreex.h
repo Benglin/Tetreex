@@ -167,9 +167,9 @@ namespace Tetreex
         {
             None = 0,
             Left,
-            Top,
+            Up,
             Right,
-            Bottom,
+            Down,
             Button0,
             Button1,
             Button2,
