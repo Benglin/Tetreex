@@ -105,8 +105,8 @@ namespace Tetreex
         bool CanMove(Direction direction) const;
         bool CanRotate(Rotation rotation) const;
 
-        void Move(Direction direction);
-        void Rotate(Rotation rotation);
+        bool Move(Direction direction);
+        bool Rotate(Rotation rotation);
         void FuseOnBoard(void) const;
 
     private:

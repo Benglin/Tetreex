@@ -47,10 +47,10 @@ bool Tetromino::CanRotate(Rotation rotation) const
     return true;
 }
 
-void Tetromino::Move(Direction direction)
+bool Tetromino::Move(Direction direction)
 {
     if (!CanMove(direction))
-        return;
+        return false;
 
     auto oldX = mX, oldY = mY;
     auto widthToRefresh = mMoldData.mBoundingSize;
@@ -81,10 +81,13 @@ void Tetromino::Move(Direction direction)
                            oldY < mY ? oldY : mY,
                            widthToRefresh,
                            heightToRefresh);
+
+    return true;
 }
 
-void Tetromino::Rotate(Rotation rotation)
+bool Tetromino::Rotate(Rotation rotation)
 {
+    return true;
 }
 
 void Tetromino::FuseOnBoard(void) const
