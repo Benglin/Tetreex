@@ -135,6 +135,7 @@ namespace Tetreex
         int Width(void) const;
         int Height(void) const;
         bool IsGameOver(void) const;
+        bool IsPlacementPossible(int x, int y, const Mold& mold) const;
         bool HasActiveTetromino(void) const;
         void FuseActiveTetromino(void);
         void SetColor(int x, int y, unsigned int color);

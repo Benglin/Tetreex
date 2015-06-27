@@ -74,7 +74,8 @@ bool Tetromino::CanMove(Direction direction) const
     if ((y + mMoldData.mBoundingSize - mMoldData.mMargins[3])>mpBoard->Height())
         return false;
 
-    return true;
+    // Check to see if placement is possible.
+    return mpBoard->IsPlacementPossible(x, y, mMoldData);
 }
 
 bool Tetromino::CanRotate(Rotation rotation) const

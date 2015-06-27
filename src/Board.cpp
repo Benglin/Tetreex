@@ -39,6 +39,11 @@ bool Board::IsGameOver(void) const
     return false;
 }
 
+bool Board::IsPlacementPossible(int x, int y, const Mold& mold) const
+{
+    return true;
+}
+
 bool Board::HasActiveTetromino(void) const
 {
     return mpActiveTetromino != nullptr;
