@@ -18,17 +18,11 @@ bool Application::Initialize()
 
 int Application::Run()
 {
-    /*
     while (mpInternalGame->CurrentState() != Game::State::Over)
     {
         ProcessInputEvents();
         mpInternalGame->UpdateFrame(); // Update frame till the game's over.
-        SDL_Delay(250);
     }
-    */
-
-    mpInternalGame->UpdateFrame();
-    SDL_Delay(2000);
 
     return 0;
 }

@@ -184,8 +184,12 @@ namespace Tetreex
         State CurrentState(void) const;
 
     private:
-        
-        int mFrameCount;
+
+        static const double MinFrameTime;
+        static const double DropInterval;
+
+        double mPrevDropTime;
+        double mDropInterval;
 
         rgb_matrix::Canvas* mpCanvas;
         State mCurrentState;

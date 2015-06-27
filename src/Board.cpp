@@ -65,8 +65,13 @@ bool Board::AdvanceTetromino(void)
     if (mpActiveTetromino == nullptr)
         return false; // Nothing to advance.
 
-    if (!mpActiveTetromino->CanMove(Tetromino::Direction::Down))
-        this->FuseActiveTetromino(); // Cannot move further.
+    if (mpActiveTetromino->CanMove(Tetromino::Direction::Down))
+        mpActiveTetromino->Move(Tetromino::Direction::Down);
+    else
+    {
+        // Cannot move further.
+        this->FuseActiveTetromino();
+    }
 
     // If there's no more active tetromino, then it means it's
     // been fused to the board. In this case the method returns
