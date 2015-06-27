@@ -44,7 +44,15 @@ void Game::HandleInput(Game::Input input)
         case Game::Input::Escape:
             mCurrentState = Game::State::Over;
             break;
-            
+
+        case Game::Input::Left:
+            mpBoard->MoveTetromino(Tetromino::Direction::Left);
+            break;
+
+        case Game::Input::Right:
+            mpBoard->MoveTetromino(Tetromino::Direction::Right);
+            break;
+
         case Game::Input::Down:
             mpBoard->MoveTetromino(Tetromino::Direction::Down);
             break;

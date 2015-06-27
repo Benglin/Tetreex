@@ -43,7 +43,7 @@ void Application::ProcessInputEvents()
             case SDL_QUIT:
                 mpInternalGame->HandleInput(Game::Input::Escape);
                 break;
-                
+
             case SDL_KEYUP:
             {
                 switch (event.key.keysym.sym)
@@ -51,8 +51,20 @@ void Application::ProcessInputEvents()
                     case SDLK_ESCAPE:
                         mpInternalGame->HandleInput(Game::Input::Escape);
                         break;
+
+                    case SDLK_LEFT:
+                        mpInternalGame->HandleInput(Game::Input::Left);
+                        break;
+
+                    case SDLK_RIGHT:
+                        mpInternalGame->HandleInput(Game::Input::Right);
+                        break;
+
+                    case SDLK_DOWN:
+                        mpInternalGame->HandleInput(Game::Input::Down);
+                        break;
                 }
-                
+
                 break;
             }
         }
