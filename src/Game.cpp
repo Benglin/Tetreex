@@ -9,6 +9,7 @@ const double Game::DropInterval = 500.0; // Starting drop time of 500ms.
 
 Game::Game(rgb_matrix::Canvas* pCanvas) :
 mpCanvas(pCanvas),
+mVisualInvalidated(false),
 mPrevDropTime(0),
 mDropInterval(Game::DropInterval),
 mCurrentState(State::None),
@@ -46,15 +47,15 @@ void Game::HandleInput(Game::Input input)
             break;
 
         case Game::Input::Left:
-            mpBoard->MoveTetromino(Tetromino::Direction::Left);
+            mVisualInvalidated = mpBoard->MoveTetromino(Tetromino::Direction::Left);
             break;
 
         case Game::Input::Right:
-            mpBoard->MoveTetromino(Tetromino::Direction::Right);
+            mVisualInvalidated = mpBoard->MoveTetromino(Tetromino::Direction::Right);
             break;
 
         case Game::Input::Down:
-            mpBoard->MoveTetromino(Tetromino::Direction::Down);
+            mVisualInvalidated = mpBoard->MoveTetromino(Tetromino::Direction::Down);
             break;
 
         default:
@@ -88,12 +89,22 @@ void Game::UpdateFrame(void)
         return;
     }
 
+    mVisualInvalidated = true;
+}
+
+void Game::RenderFrame(void)
+{
+    if (!mVisualInvalidated)
+        return;
+
 #ifdef USE_SDL_RENDERER
     
     auto pCanvas = ((PixelBuffer*) mpCanvas);
     pCanvas->Present(); // Only for SDL we need to present it.
     
 #endif
+
+    mVisualInvalidated = false;
 }
 
 Game::State Game::CurrentState(void) const

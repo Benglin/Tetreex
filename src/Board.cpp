@@ -80,10 +80,12 @@ bool Board::AdvanceTetromino(void)
     return mpActiveTetromino != nullptr;
 }
 
-void Board::MoveTetromino(Tetromino::Direction direction)
+bool Board::MoveTetromino(Tetromino::Direction direction)
 {
     if (mpActiveTetromino != nullptr)
-        mpActiveTetromino->Move(direction);
+        return mpActiveTetromino->Move(direction);
+
+    return false; // Nothing changes internally.
 }
 
 void Board::AddTetromino(Tetromino* pTetromino)

@@ -138,7 +138,7 @@ namespace Tetreex
         void SetColor(int x, int y, unsigned int color);
 
         bool AdvanceTetromino(void);
-        void MoveTetromino(Tetromino::Direction direction);
+        bool MoveTetromino(Tetromino::Direction direction);
         void AddTetromino(Tetromino* pTetromino);
         void RefreshRegion(int x, int y, int width, int height) const;
         
@@ -182,6 +182,7 @@ namespace Tetreex
 
         void HandleInput(Game::Input input);
         void UpdateFrame(void);
+        void RenderFrame(void);
         State CurrentState(void) const;
 
     private:
@@ -191,6 +192,7 @@ namespace Tetreex
 
         double mPrevDropTime;
         double mDropInterval;
+        bool mVisualInvalidated;
 
         rgb_matrix::Canvas* mpCanvas;
         State mCurrentState;

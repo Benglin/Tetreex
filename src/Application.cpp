@@ -22,6 +22,7 @@ int Application::Run()
     {
         ProcessInputEvents();
         mpInternalGame->UpdateFrame(); // Update frame till the game's over.
+        mpInternalGame->RenderFrame();
     }
 
     return 0;
