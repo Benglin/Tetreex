@@ -63,10 +63,15 @@ bool Tetromino::CanMove(Direction direction) const
             break;
     }
 
-    // First validate both the left and right margins.
+    // First validate both the left and right margins, ensuring they do not go out-of-bound.
+    //
     if (x + mMoldData.mMargins[0] < 0)
         return false;
     if ((x + mMoldData.mBoundingSize - mMoldData.mMargins[2]) > mpBoard->Width())
+        return false;
+
+    // Ensure the block doesn't go beyond the lower bound of the board.
+    if ((y + mMoldData.mBoundingSize - mMoldData.mMargins[3])>mpBoard->Height())
         return false;
 
     return true;
