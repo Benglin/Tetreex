@@ -23,9 +23,12 @@ mpAudioDevice(nullptr)
 
 Game::~Game()
 {
+    delete mpBoard;
+    mpBoard = nullptr;
+
     delete mpAudioDevice;
     mpAudioDevice = nullptr;
-    
+
     delete mpCanvas;
     mpCanvas = nullptr;
 }
@@ -38,6 +41,10 @@ void Game::HandleInput(Game::Input input)
             mCurrentState = Game::State::Over;
             break;
             
+        case Game::Input::Bottom:
+            mpBoard->MoveTetromino(Tetromino::Direction::Down);
+            break;
+
         default:
             break;
     }
@@ -45,18 +52,6 @@ void Game::HandleInput(Game::Input input)
 
 void Game::UpdateFrame(void)
 {
-    // If this is the first frame, clear buffer...
-    if (mFrameCount == 0)
-        mpCanvas->Clear();
-    
-    const int x = mFrameCount % mpCanvas->width();
-    const int y = mFrameCount / mpCanvas->height();
-    mpCanvas->SetPixel(x, y, 0x40, 0x80, 0xff);
-    
-    mFrameCount = mFrameCount + 1;
-    if (mFrameCount >= 1024)
-        mCurrentState = Game::State::Over;
-    
 #ifdef USE_SDL_RENDERER
     
     auto pCanvas = ((PixelBuffer*) mpCanvas);

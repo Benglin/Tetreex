@@ -34,6 +34,7 @@ Tetromino::Tetromino(Board* pBoard) :
 mX(0), mY(0), mWidth(0), mHeight(0),
 mpBoard(pBoard)
 {
+    Initialize();
 }
 
 bool Tetromino::CanMove(Direction direction) const
