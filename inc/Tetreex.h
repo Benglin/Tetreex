@@ -50,6 +50,8 @@ namespace Tetreex
         static const int CellSize;
 
         int mWidth, mHeight;
+        unsigned int* mpInternalBuffer;
+        SDL_Texture* mpTexture;
         SDL_Renderer* mpRenderer;
         SDL_Window* mpWindow;
     };
