@@ -79,6 +79,8 @@ namespace Tetreex
         
         int mBoundingSize;
         unsigned int mColor; // 0xAaBbGgRr
+
+        int mMargins[4];
         unsigned int mBits[4][4];
     };
 

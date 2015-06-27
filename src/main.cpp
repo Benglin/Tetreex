@@ -11,9 +11,14 @@
 using namespace Tetreex;
 
 int main(int argc, const char * argv[]) {
-    
+
+    // The game is actually 16x16 blocks in dimension. In SDL mode, these blocks (pixels) are
+    // blown up to display on-screen, so the dimension stays as 16x16. In LED matrix mode
+    // however, the board is 32x32, which is why we need to initialize the canvas as 32x32
+    // in size. Each of the pixels on the game board gets shown as 2x2 pixels on the matrix.
+    //
 #ifdef USE_SDL_RENDERER
-    auto pCanvas = new PixelBuffer(32, 32);
+    auto pCanvas = new PixelBuffer(16, 16);
 #else
     auto pCanvas = new PixelBuffer(32, 32);
 #endif

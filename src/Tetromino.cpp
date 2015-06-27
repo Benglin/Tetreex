@@ -9,6 +9,8 @@ const Mold Tetromino::Molds[] =
         4,
         0xff0080ff,
 
+        { 0, 1, 0, 2 },
+
         {
             { 0x00000000, 0x00000000, 0x00000000, 0x00000000 },
             { 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff },
@@ -20,7 +22,9 @@ const Mold Tetromino::Molds[] =
     {
         3,
         0xff00ff80,
-        
+
+        { 0, 0, 0, 1 },
+
         {
             { 0x00000000, 0xffffffff, 0x00000000, 0x00000000 },
             { 0xffffffff, 0xffffffff, 0xffffffff, 0x00000000 },
@@ -39,6 +43,32 @@ mpBoard(pBoard)
 
 bool Tetromino::CanMove(Direction direction) const
 {
+    auto x = mX, y = mY; // New x and y coordinates.
+
+    switch (direction)
+    {
+        case Direction::Left:
+            x = x - 1;
+            break;
+
+        case Direction::Right:
+            x = x + 1;
+            break;
+
+        case Direction::Down:
+            y = y + 1;
+            break;
+
+        default:
+            break;
+    }
+
+    // First validate both the left and right margins.
+    if (x + mMoldData.mMargins[0] < 0)
+        return false;
+    if ((x + mMoldData.mBoundingSize - mMoldData.mMargins[2]) > mpBoard->Width())
+        return false;
+
     return true;
 }
 

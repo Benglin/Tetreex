@@ -20,7 +20,7 @@ mpAudioDevice(nullptr)
     mpAudioDevice->LoadMediaFiles();
     mpAudioDevice->PlayBackgroundMusic(true);
 
-    mpBoard = new Board(32, 32, mpCanvas);
+    mpBoard = new Board(16, 16, mpCanvas);
 
     auto pTetromino = new Tetromino(mpBoard);
     mpBoard->AddTetromino(pTetromino);
