@@ -5,6 +5,11 @@
 
 using namespace Tetreex;
 
+#define MAKECOLOR(r, g, b)  (((r & 0x000000ff) << 16) | \
+                             ((g & 0x000000ff) << 8) |  \
+                             (b & 0x000000ff) |         \
+                             0xff000000)
+
 #ifdef USE_SDL_RENDERER
 
 const int PixelBuffer::ScaleFactor = 16;
@@ -69,11 +74,7 @@ int PixelBuffer::height() const
 void PixelBuffer::SetPixel(int x, int y,
                            uint8_t red, uint8_t green, uint8_t blue)
 {
-    const auto color = 0xff000000 |
-        ((red & 0x000000ff) |
-         ((green & 0x000000ff) << 8) |
-         ((blue & 0x000000ff) << 16));
-
+    const auto color = MAKECOLOR(red, green, blue);
     mpInternalBuffer[(y * mWidth) + x] = color;
 }
 
@@ -84,11 +85,7 @@ void PixelBuffer::Clear()
 
 void PixelBuffer::Fill(uint8_t red, uint8_t green, uint8_t blue)
 {
-    const auto color = 0xff000000 |
-        ((red & 0x000000ff) |
-         ((green & 0x000000ff) << 8) |
-         ((blue & 0x000000ff) << 16));
-
+    const auto color = MAKECOLOR(red, green, blue);
     auto writePointer = &mpInternalBuffer[0];
 
     auto pixels = mWidth * mHeight;

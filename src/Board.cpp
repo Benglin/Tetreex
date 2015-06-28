@@ -166,9 +166,9 @@ void Board::RefreshRegion(int x, int y, int width, int height) const
         {
             auto color = *(pPixel + w);
 
-            auto red   = ((color & 0x000000ff) >>  0);
+            auto red   = ((color & 0x00ff0000) >> 16);
             auto green = ((color & 0x0000ff00) >>  8);
-            auto blue  = ((color & 0x00ff0000) >> 16);
+            auto blue  = ((color & 0x000000ff) >>  0);
             mpCanvas->SetPixel(x + w, y + h, red, green, blue);
         }
     }
