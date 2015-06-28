@@ -128,6 +128,7 @@ bool Tetromino::Rotate(Rotation rotation)
 
 void Tetromino::FuseOnBoard(void) const
 {
+    Draw(mMoldData.mColor, true); // Draw with permanent color.
 }
 
 void Tetromino::Initialize(void)

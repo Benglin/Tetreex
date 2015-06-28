@@ -4,6 +4,10 @@
 
 using namespace Tetreex;
 
+#define ISPERMANENT(c)      ((c & 0xff000000) == 0xff000000)
+#define MAKETEMPORARY(c)    (c & 0x00ffffff)
+#define MAKEPERMANENT(c)    ((c & 0x00ffffff) | 0xff000000)
+
 Board::Board(int width, int height, rgb_matrix::Canvas* pCanvas) :
 mWidth(width),
 mHeight(height),
@@ -62,6 +66,9 @@ bool Board::IsPlacementPossible(int x, int y, const Mold& mold) const
             // cannot be placed here.
             //
             auto pixelOnBoard = *p;
+            if (!ISPERMANENT(pixelOnBoard)) // Just a temporary pixel.
+                continue;
+
             if (pixelOnBoard != 0x00000000)
                 return false;
         }
@@ -86,9 +93,7 @@ void Board::FuseActiveTetromino(void)
 
 void Board::SetColor(int x, int y, unsigned int color, bool permanent)
 {
-    color = color & 0x00ffffff;
-    if (permanent)
-        color = 0xff000000 | color;
+    color = permanent ? MAKEPERMANENT(color) : MAKETEMPORARY(color);
 
     auto pPixel = PixelAt(x, y);
     if (pPixel != nullptr)
