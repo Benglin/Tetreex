@@ -41,6 +41,32 @@ bool Board::IsGameOver(void) const
 
 bool Board::IsPlacementPossible(int x, int y, const Mold& mold) const
 {
+    for (int my = 0, by = y; my < mold.mBoundingSize; my++, by++)
+    {
+        // Skip the entire row if it is beyond the board.
+        if (by < 0 || (by >= mHeight))
+            continue;
+
+        for (int mx = 0, bx = x; mx < mold.mBoundingSize; mx++, bx++)
+        {
+            auto pixelOnMold = mold.mBits[my][mx];
+            if (pixelOnMold == 0x00000000)
+                continue; // The pixel is empty so it doesn't matter.
+
+            auto p = PixelAt(bx, by); // Get pixel on board...
+            if (p == nullptr)
+                continue; // Coordinates out-of-bound.
+
+            // When it gets here, it means the mold has a colored pixel. If the
+            // corresponding pixel on the board is not empty, that means the mold
+            // cannot be placed here.
+            //
+            auto pixelOnBoard = *p;
+            if (pixelOnBoard != 0x00000000)
+                return false;
+        }
+    }
+
     return true;
 }
 
