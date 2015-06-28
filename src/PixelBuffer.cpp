@@ -6,7 +6,7 @@
 using namespace Tetreex;
 
 #define MAKECOLOR(r, g, b)  (((r & 0x000000ff) << 16) | \
-                             ((g & 0x000000ff) << 8) |  \
+                             ((g & 0x000000ff) <<  8) | \
                              (b & 0x000000ff) |         \
                              0xff000000)
 

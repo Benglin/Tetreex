@@ -12,7 +12,8 @@ Board::Board(int width, int height, rgb_matrix::Canvas* pCanvas) :
 mWidth(width),
 mHeight(height),
 mpCanvas(pCanvas),
-mpActiveTetromino(nullptr)
+mpActiveTetromino(nullptr),
+mDistribution(0, ((int)Tetromino::Type::Max - 1))
 {
     auto elements = mWidth * mHeight;
     mpContent = new unsigned int[elements];
@@ -135,7 +136,8 @@ void Board::GenerateTetromino(void)
         return;
     }
 
-    mpActiveTetromino = new Tetromino(this);
+    auto type = ((Tetromino::Type) mDistribution(mGenerator));
+    mpActiveTetromino = new Tetromino(this, type);
     mpActiveTetromino->Move(Tetromino::Direction::Down);
 }
 

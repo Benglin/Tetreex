@@ -7,6 +7,7 @@
 //
 
 #include <stdexcept>
+#include <random>
 #include "SDL2/SDL.h"
 
 #ifdef __APPLE__
@@ -103,7 +104,7 @@ namespace Tetreex
             Left, Right, Down
         };
 
-        Tetromino(Board* pBoard);
+        Tetromino(Board* pBoard, Tetromino::Type type);
 
         bool CanMove(Direction direction) const;
         bool CanRotate(Rotation rotation) const;
@@ -152,6 +153,8 @@ namespace Tetreex
 
         int mWidth, mHeight;
         unsigned int* mpContent;
+        std::default_random_engine mGenerator;
+        std::uniform_int_distribution<int> mDistribution;
         
         Tetromino* mpActiveTetromino;
         rgb_matrix::Canvas* mpCanvas;

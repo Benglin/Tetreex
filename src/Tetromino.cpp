@@ -104,9 +104,9 @@ const Mold Tetromino::Molds[] =
     },
 };
 
-Tetromino::Tetromino(Board* pBoard) :
+Tetromino::Tetromino(Board* pBoard, Tetromino::Type type) :
 mX(0), mY(0), mWidth(0), mHeight(0),
-mpBoard(pBoard)
+mpBoard(pBoard), mType(type)
 {
     Initialize();
 }
@@ -203,8 +203,6 @@ void Tetromino::FuseOnBoard(void) const
 
 void Tetromino::Initialize(void)
 {
-    mType = Type::I;
-    
     auto pMold = &(Tetromino::Molds[(int)mType]);
     memcpy(&mMoldData, pMold, sizeof(Mold));
 
