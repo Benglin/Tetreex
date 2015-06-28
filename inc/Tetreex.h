@@ -118,7 +118,7 @@ namespace Tetreex
 
         void Initialize(void);
         void Clear(void) const;
-        void Draw(unsigned int color) const;
+        void Draw(unsigned int color, bool permanent) const;
 
         int mX, mY, mWidth, mHeight;
         Tetromino::Type mType;
@@ -138,7 +138,7 @@ namespace Tetreex
         bool IsPlacementPossible(int x, int y, const Mold& mold) const;
         bool HasActiveTetromino(void) const;
         void FuseActiveTetromino(void);
-        void SetColor(int x, int y, unsigned int color);
+        void SetColor(int x, int y, unsigned int color, bool permanent);
 
         bool AdvanceTetromino(void);
         bool MoveTetromino(Tetromino::Direction direction);

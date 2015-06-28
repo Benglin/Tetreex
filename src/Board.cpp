@@ -84,8 +84,12 @@ void Board::FuseActiveTetromino(void)
     }
 }
 
-void Board::SetColor(int x, int y, unsigned int color)
+void Board::SetColor(int x, int y, unsigned int color, bool permanent)
 {
+    color = color & 0x00ffffff;
+    if (permanent)
+        color = 0xff000000 | color;
+
     auto pPixel = PixelAt(x, y);
     if (pPixel != nullptr)
         *pPixel = color;

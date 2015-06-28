@@ -71,7 +71,7 @@ bool Tetromino::CanMove(Direction direction) const
         return false;
 
     // Ensure the block doesn't go beyond the lower bound of the board.
-    if ((y + mMoldData.mBoundingSize - mMoldData.mMargins[3])>mpBoard->Height())
+    if ((y + mMoldData.mBoundingSize - mMoldData.mMargins[3]) > mpBoard->Height())
         return false;
 
     // Check to see if placement is possible.
@@ -110,7 +110,7 @@ bool Tetromino::Move(Direction direction)
             break;
     }
 
-    this->Draw(mMoldData.mColor); // Render at new location.
+    this->Draw(mMoldData.mColor, false); // Render at new location.
 
     // Flush the contents of board to canvas.
     mpBoard->RefreshRegion(oldX < mX ? oldX : mX,
@@ -140,10 +140,10 @@ void Tetromino::Initialize(void)
 
 void Tetromino::Clear(void) const
 {
-    Draw(0x00000000);
+    Draw(0x00000000, false);
 }
 
-void Tetromino::Draw(unsigned int color) const
+void Tetromino::Draw(unsigned int color, bool permanent) const
 {
     auto boardWidth   = mpBoard->Width();
     auto boardHeight  = mpBoard->Height();
@@ -165,7 +165,7 @@ void Tetromino::Draw(unsigned int color) const
                 {
                     // Draw only if it's not a blank.
                     color = flags & color;
-                    mpBoard->SetColor(tx, ty, color);
+                    mpBoard->SetColor(tx, ty, color, permanent);
                 }
             }
         }
