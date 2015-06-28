@@ -21,9 +21,7 @@ mpAudioDevice(nullptr)
     mpAudioDevice->PlayBackgroundMusic(true);
 
     mpBoard = new Board(16, 16, mpCanvas);
-
-    auto pTetromino = new Tetromino(mpBoard);
-    mpBoard->AddTetromino(pTetromino);
+    mpBoard->GenerateTetromino();
 }
 
 Game::~Game()
@@ -63,8 +61,6 @@ void Game::HandleInput(Game::Input input)
     }
 }
 
-int frameCount = 50;
-
 void Game::UpdateFrame(void)
 {
     timeval tv;
@@ -81,13 +77,8 @@ void Game::UpdateFrame(void)
         overshot = mDropInterval;
 
     mPrevDropTime = currentTime - overshot;
-    mpBoard->AdvanceTetromino();
-
-    frameCount--;
-    if (frameCount <= 0) {
-        mCurrentState = Game::State::Over;
-        return;
-    }
+    if (!mpBoard->AdvanceTetromino())
+        mpBoard->GenerateTetromino();
 
     mVisualInvalidated = true;
 }

@@ -128,14 +128,14 @@ bool Board::MoveTetromino(Tetromino::Direction direction)
     return false; // Nothing changes internally.
 }
 
-void Board::AddTetromino(Tetromino* pTetromino)
+void Board::GenerateTetromino(void)
 {
     if (mpActiveTetromino != nullptr) {
-        std::cout << "Invalid call to Board::AddTetromino";
+        std::cout << "Invalid call to Board::GenerateTetromino";
         return;
     }
 
-    mpActiveTetromino = pTetromino;
+    mpActiveTetromino = new Tetromino(this);
     mpActiveTetromino->Move(Tetromino::Direction::Down);
 }
 

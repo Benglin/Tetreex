@@ -137,6 +137,15 @@ void Tetromino::Initialize(void)
     
     auto pMold = &(Tetromino::Molds[(int)mType]);
     memcpy(&mMoldData, pMold, sizeof(Mold));
+
+    // In order for a new tetromino to be hidden from view, its vertical offset needs
+    // to be just before the first row of pixels. Here the total height is taken, and
+    // then subtracting the bottom margin will be the actual height of the tetromino.
+    // Moving that many pixels vertically above the board will hide the tetromino just
+    // right.
+    //
+    mY = -(mMoldData.mBoundingSize - mMoldData.mMargins[3]);
+    mX = ((mpBoard->Width() - mMoldData.mBoundingSize) / 2);
 }
 
 void Tetromino::Clear(void) const
