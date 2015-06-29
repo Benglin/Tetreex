@@ -155,7 +155,22 @@ bool Tetromino::CanMove(Direction direction) const
 
 bool Tetromino::CanRotate(Rotation rotation) const
 {
-    return true;
+    Mold temporary; // Make a duplicate copy for rotation...
+    memcpy(&temporary, &mMoldData, sizeof(Mold));
+    temporary.Rotate(rotation == Tetromino::Rotation::ClockWise);
+
+    auto x = mX, y = mY;
+    if (x + temporary.mMargins[0] < 0)
+        x = 0;
+    else if (x + temporary.mBoundingSize - temporary.mMargins[2] > mpBoard->Width())
+        x = mpBoard->Width() - (temporary.mBoundingSize - temporary.mMargins[2]);
+
+    // Ensure the block doesn't go beyond the lower bound of the board.
+    if ((y + temporary.mBoundingSize - temporary.mMargins[3]) > mpBoard->Height())
+        return false;
+
+    // Check to see if placement is possible.
+    return mpBoard->IsPlacementPossible(x, y, temporary);
 }
 
 bool Tetromino::Move(Direction direction)
