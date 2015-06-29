@@ -106,6 +106,21 @@ const Mold Tetromino::Molds[] =
 
 void Mold::Rotate(bool clockwise)
 {
+    if (clockwise) {
+        auto t = mMargins[0];
+        mMargins[0] = mMargins[3];
+        mMargins[3] = mMargins[2];
+        mMargins[2] = mMargins[1];
+        mMargins[1] = t;
+    }
+    else {
+        auto t = mMargins[0];
+        mMargins[0] = mMargins[1];
+        mMargins[1] = mMargins[2];
+        mMargins[2] = mMargins[3];
+        mMargins[3] = t;
+    }
+
     switch (this->mBoundingSize)
     {
         case 2: Rotate2x2(clockwise); break;
