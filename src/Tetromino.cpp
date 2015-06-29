@@ -106,7 +106,105 @@ const Mold Tetromino::Molds[] =
 
 void Mold::Rotate(bool clockwise)
 {
-    
+    switch (this->mBoundingSize)
+    {
+        case 2: Rotate2x2(clockwise); break;
+        case 3: Rotate3x3(clockwise); break;
+        case 4: Rotate4x4(clockwise); break;
+    }
+}
+
+void Mold::Rotate2x2(bool clockwise)
+{
+    // Does nothing for 2 x 2 case.
+}
+
+void Mold::Rotate3x3(bool clockwise)
+{
+    if (clockwise)
+    {
+        auto t = mMasks[0][0];
+        mMasks[0][0] = mMasks[2][0];
+        mMasks[2][0] = mMasks[2][2];
+        mMasks[2][2] = mMasks[0][2];
+        mMasks[0][2] = t;
+
+        t = mMasks[0][1];
+        mMasks[0][1] = mMasks[1][0];
+        mMasks[1][0] = mMasks[2][1];
+        mMasks[2][1] = mMasks[1][2];
+        mMasks[1][2] = t;
+    }
+    else
+    {
+        auto t = mMasks[0][0];
+        mMasks[0][0] = mMasks[0][2];
+        mMasks[0][2] = mMasks[2][2];
+        mMasks[2][2] = mMasks[2][0];
+        mMasks[2][0] = t;
+
+        t = mMasks[0][1];
+        mMasks[0][1] = mMasks[1][2];
+        mMasks[1][2] = mMasks[2][1];
+        mMasks[2][1] = mMasks[1][0];
+        mMasks[1][0] = t;
+    }
+}
+
+void Mold::Rotate4x4(bool clockwise)
+{
+    if (clockwise)
+    {
+        auto t = mMasks[0][0];
+        mMasks[0][0] = mMasks[3][0];
+        mMasks[3][0] = mMasks[3][3];
+        mMasks[3][3] = mMasks[0][3];
+        mMasks[0][3] = t;
+
+        t = mMasks[0][1];
+        mMasks[0][1] = mMasks[2][0];
+        mMasks[2][0] = mMasks[3][2];
+        mMasks[3][2] = mMasks[1][3];
+        mMasks[1][3] = t;
+
+        t = mMasks[0][2];
+        mMasks[0][2] = mMasks[1][0];
+        mMasks[1][0] = mMasks[3][1];
+        mMasks[3][1] = mMasks[2][3];
+        mMasks[2][3] = t;
+
+        t = mMasks[1][1];
+        mMasks[1][1] = mMasks[2][1];
+        mMasks[2][1] = mMasks[2][2];
+        mMasks[2][2] = mMasks[1][2];
+        mMasks[1][2] = t;
+    }
+    else
+    {
+        auto t = mMasks[0][0];
+        mMasks[0][0] = mMasks[0][3];
+        mMasks[0][3] = mMasks[3][3];
+        mMasks[3][3] = mMasks[3][0];
+        mMasks[3][0] = t;
+
+        t = mMasks[0][1];
+        mMasks[0][1] = mMasks[1][3];
+        mMasks[1][3] = mMasks[3][2];
+        mMasks[3][2] = mMasks[2][0];
+        mMasks[2][0] = t;
+
+        t = mMasks[0][2];
+        mMasks[0][2] = mMasks[2][3];
+        mMasks[2][3] = mMasks[3][1];
+        mMasks[3][1] = mMasks[1][0];
+        mMasks[1][0] = t;
+
+        t = mMasks[1][1];
+        mMasks[1][1] = mMasks[1][2];
+        mMasks[1][2] = mMasks[2][2];
+        mMasks[2][2] = mMasks[2][1];
+        mMasks[2][1] = t;
+    }
 }
 
 Tetromino::Tetromino(Board* pBoard, Tetromino::Type type) :

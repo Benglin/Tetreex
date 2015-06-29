@@ -87,6 +87,12 @@ namespace Tetreex
 
         int mMargins[4];
         unsigned int mMasks[4][4];
+
+    private:
+
+        void Rotate2x2(bool clockwise);
+        void Rotate3x3(bool clockwise);
+        void Rotate4x4(bool clockwise);
     };
 
     class Tetromino
