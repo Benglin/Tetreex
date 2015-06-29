@@ -77,12 +77,16 @@ namespace Tetreex
     struct Mold
     {
     public:
-        
+
+        void Rotate(bool clockwise);
+
+    public:
+
         int mBoundingSize;
         unsigned int mColor; // 0xAaBbGgRr
 
         int mMargins[4];
-        unsigned int mBits[4][4];
+        unsigned int mMasks[4][4];
     };
 
     class Tetromino

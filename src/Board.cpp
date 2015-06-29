@@ -54,7 +54,7 @@ bool Board::IsPlacementPossible(int x, int y, const Mold& mold) const
 
         for (int mx = 0, bx = x; mx < mold.mBoundingSize; mx++, bx++)
         {
-            auto pixelOnMold = mold.mBits[my][mx];
+            auto pixelOnMold = mold.mMasks[my][mx];
             if (pixelOnMold == 0x00000000)
                 continue; // The pixel is empty so it doesn't matter.
 
