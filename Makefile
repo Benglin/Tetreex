@@ -10,7 +10,7 @@ CFLAGS=-I$(TETREEX_INCDIR) -DUSE_SDL_RENDERER -std=gnu++11 `sdl2-config --cflags
 _DEPS = Tetreex.h
 DEPS = $(patsubst %,$(TETREEX_INCDIR)/%,$(_DEPS))
 
-_OBJS = main.o Tetreex.o
+_OBJS = main.o Application.o AudioDevice.o Board.o Game.o PixelBuffer.o Tetromino.o
 OBJS = $(patsubst %,$(TETREEX_OUTDIR)/%,$(_OBJS))
 
 $(TETREEX_OUTDIR)/%.o: $(TETREEX_SRCDIR)/%.cpp $(DEPS)
