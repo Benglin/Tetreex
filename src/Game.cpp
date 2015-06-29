@@ -56,7 +56,15 @@ void Game::HandleInput(Game::Input input)
             mVisualInvalidated = mpBoard->MoveTetromino(Tetromino::Direction::Down);
             break;
 
-        default:
+        case Game::Input::Button0:
+            break;
+
+        case Game::Input::Button1:
+            mVisualInvalidated = mpBoard->RotateTetromino(Tetromino::Rotation::CounterClockWise);
+            break;
+
+        case Game::Input::Button2:
+            mVisualInvalidated = mpBoard->RotateTetromino(Tetromino::Rotation::ClockWise);
             break;
     }
 }

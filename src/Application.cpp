@@ -64,6 +64,18 @@ void Application::ProcessInputEvents()
                     case SDLK_DOWN:
                         mpInternalGame->HandleInput(Game::Input::Down);
                         break;
+
+                    case SDLK_a:
+                        mpInternalGame->HandleInput(Game::Input::Button0);
+                        break;
+
+                    case SDLK_s:
+                        mpInternalGame->HandleInput(Game::Input::Button1);
+                        break;
+
+                    case SDLK_d:
+                        mpInternalGame->HandleInput(Game::Input::Button2);
+                        break;
                 }
 
                 break;

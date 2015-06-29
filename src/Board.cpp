@@ -129,6 +129,14 @@ bool Board::MoveTetromino(Tetromino::Direction direction)
     return false; // Nothing changes internally.
 }
 
+bool Board::RotateTetromino(Tetromino::Rotation rotation)
+{
+    if (mpActiveTetromino != nullptr)
+        return mpActiveTetromino->Rotate(rotation);
+
+    return false; // Nothing changes internally.
+}
+
 void Board::GenerateTetromino(void)
 {
     if (mpActiveTetromino != nullptr) {

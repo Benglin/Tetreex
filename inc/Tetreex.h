@@ -153,6 +153,7 @@ namespace Tetreex
 
         bool AdvanceTetromino(void);
         bool MoveTetromino(Tetromino::Direction direction);
+        bool RotateTetromino(Tetromino::Rotation rotation);
         void GenerateTetromino(void);
         void RefreshRegion(int x, int y, int width, int height) const;
         
