@@ -23,7 +23,7 @@ int main(int argc, const char * argv[]) {
 
 #else
 
-    GPIO io;
+    rgb_matrix::GPIO io;
     if (!io.Init())
         return 1;
 
