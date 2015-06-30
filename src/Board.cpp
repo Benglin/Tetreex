@@ -137,6 +137,8 @@ bool Board::RotateTetromino(Tetromino::Rotation rotation)
     return false; // Nothing changes internally.
 }
 
+int gtype = 0;
+
 void Board::GenerateTetromino(void)
 {
     if (mpActiveTetromino != nullptr) {
@@ -144,7 +146,10 @@ void Board::GenerateTetromino(void)
         return;
     }
 
-    auto type = ((Tetromino::Type) mDistribution(mGenerator));
+    if (gtype == 7)
+        gtype = 0;
+
+    auto type = ((Tetromino::Type) gtype++);
     mpActiveTetromino = new Tetromino(this, type);
     mpActiveTetromino->Move(Tetromino::Direction::Down);
 }
