@@ -16,7 +16,7 @@
 #include "SDL_mixer.h"
 #endif
 
-#include "../matrix/include/graphics.h"
+#include "../matrix/include/led-matrix.h"
 
 #ifndef Tetreex_Tetreex_h
 #define Tetreex_Tetreex_h
