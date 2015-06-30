@@ -234,6 +234,12 @@ namespace Tetreex
         int GpioDirection(int pin, int direction);
         int GpioRead(int pin);
 
+        static const int PinBufferSize;
+        static const int DirBufferSize;
+        static const int IoBufferSize;
+        static const int DirectionIn;
+        static const int DirectionOut;
+
         Game* mpInternalGame;
     };
 }

@@ -9,12 +9,11 @@
 
 using namespace Tetreex;
 
-#define BUFFER_MAX 3
-#define DIRECTION_MAX 35
-#define VALUE_MAX 30
-
-#define IN   0
-#define OUT  1
+const int Application::PinBufferSize = 3;
+const int Application::DirBufferSize = 35;
+const int Application::IoBufferSize  = 30;
+const int Application::DirectionIn   = 0;
+const int Application::DirectionOut  = 1;
 
 Application::Application(Game* pGame) :
 mpInternalGame(pGame)
@@ -104,8 +103,8 @@ int Application::GpioExport(int pin)
         return(-1);
     }
 
-    char buffer[BUFFER_MAX];
-    auto bytes_written = snprintf(buffer, BUFFER_MAX, "%d", pin);
+    char buffer[PinBufferSize];
+    auto bytes_written = snprintf(buffer, PinBufferSize, "%d", pin);
     write(fd, buffer, bytes_written);
 
     close(fd);
@@ -120,8 +119,8 @@ int Application::GpioUnexport(int pin)
         return(-1);
     }
 
-    char buffer[BUFFER_MAX];
-    auto bytes_written = snprintf(buffer, BUFFER_MAX, "%d", pin);
+    char buffer[PinBufferSize];
+    auto bytes_written = snprintf(buffer, PinBufferSize, "%d", pin);
     write(fd, buffer, bytes_written);
 
     close(fd);
@@ -130,15 +129,15 @@ int Application::GpioUnexport(int pin)
 
 int Application::GpioDirection(int pin, int direction)
 {
-    char path[DIRECTION_MAX];
-    snprintf(path, DIRECTION_MAX, "/sys/class/gpio/gpio%d/direction", pin);
+    char path[DirBufferSize];
+    snprintf(path, DirBufferSize, "/sys/class/gpio/gpio%d/direction", pin);
     auto fd = open(path, O_WRONLY);
     if (-1 == fd) {
         fprintf(stderr, "Failed to open gpio direction for writing!\n");
         return(-1);
     }
 
-    auto isInput = direction == IN;
+    auto isInput = direction == DirectionIn;
     static const char s_directions_str[]  = "in\0out";
     if (-1 == write(fd, &s_directions_str[isInput ? 0 : 3], isInput ? 2 : 3)) {
         fprintf(stderr, "Failed to set direction!\n");
@@ -151,8 +150,8 @@ int Application::GpioDirection(int pin, int direction)
 
 int Application::GpioRead(int pin)
 {
-    char path[VALUE_MAX];
-    snprintf(path, VALUE_MAX, "/sys/class/gpio/gpio%d/value", pin);
+    char path[IoBufferSize];
+    snprintf(path, IoBufferSize, "/sys/class/gpio/gpio%d/value", pin);
     auto fd = open(path, O_RDONLY);
     if (-1 == fd) {
         fprintf(stderr, "Failed to open gpio value for reading!\n");
