@@ -97,10 +97,10 @@ void Game::RenderFrame(void)
         return;
 
 #ifdef USE_SDL_RENDERER
-    
+
     auto pCanvas = ((PixelBuffer*) mpCanvas);
     pCanvas->Present(); // Only for SDL we need to present it.
-    
+
 #endif
 
     mVisualInvalidated = false;

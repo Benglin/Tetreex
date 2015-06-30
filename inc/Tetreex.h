@@ -229,6 +229,10 @@ namespace Tetreex
     private:
 
         void ProcessInputEvents(void);
+        int GpioExport(int pin);
+        int GpioUnexport(int pin);
+        int GpioDirection(int pin, int direction);
+        int GpioRead(int pin);
 
         Game* mpInternalGame;
     };
