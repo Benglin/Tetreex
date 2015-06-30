@@ -179,7 +179,15 @@ void Board::RefreshRegion(int x, int y, int width, int height) const
             auto red   = ((color & 0x00ff0000) >> 16);
             auto green = ((color & 0x0000ff00) >>  8);
             auto blue  = ((color & 0x000000ff) >>  0);
-            mpCanvas->SetPixel(x + w, y + h, red, green, blue);
+
+            // A pixel on board is corresponding to two pixels on display.
+            auto left = ((x + w) << 1);
+            auto top = ((y + h) << 1);
+
+            mpCanvas->SetPixel(left + 0, top + 0, red, green, blue);
+            mpCanvas->SetPixel(left + 1, top + 0, red, green, blue);
+            mpCanvas->SetPixel(left + 0, top + 1, red, green, blue);
+            mpCanvas->SetPixel(left + 1, top + 1, red, green, blue);
         }
     }
 }
