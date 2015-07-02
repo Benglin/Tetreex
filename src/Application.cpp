@@ -190,19 +190,26 @@ void Application::ProcessInputEvents()
 
         switch (ports[p])
         {
-            case Application::Gpio07:
+            case Application::Gpio07: // Up button.
+                mpInternalGame->HandleInput(Game::Input::Escape);
                 break;
-            case Application::Gpio08:
+            case Application::Gpio08: // Down button.
+                mpInternalGame->HandleInput(Game::Input::Down);
                 break;
-            case Application::Gpio09:
+            case Application::Gpio09: // Right button.
+                mpInternalGame->HandleInput(Game::Input::Right);
                 break;
-            case Application::Gpio10:
+            case Application::Gpio10: // Blue button.
+                mpInternalGame->HandleInput(Game::Input::Button0);
                 break;
-            case Application::Gpio11:
+            case Application::Gpio11: // Left button.
+                mpInternalGame->HandleInput(Game::Input::Left);
                 break;
-            case Application::Gpio24:
+            case Application::Gpio24: // Yellow button.
+                mpInternalGame->HandleInput(Game::Input::Button1);
                 break;
-            case Application::Gpio25:
+            case Application::Gpio25: // Green button.
+                mpInternalGame->HandleInput(Game::Input::Button2);
                 break;
         }
     }
