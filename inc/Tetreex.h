@@ -21,8 +21,6 @@
 #ifndef Tetreex_Tetreex_h
 #define Tetreex_Tetreex_h
 
-#define USE_GPIO_INPUTS
-
 namespace Tetreex
 {
     class Board; // Forward declaration.
