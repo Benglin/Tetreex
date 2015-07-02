@@ -11,8 +11,8 @@ RGB_LIBRARY_NAME=rgbmatrix
 RGB_LIBRARY=$(RGB_LIBDIR)/lib$(RGB_LIBRARY_NAME).a
 LDFLAGS+=-L$(RGB_LIBDIR) -l$(RGB_LIBRARY_NAME) -lrt -lm -lpthread
 
-# CFLAGS=-I$(TETREEX_INCDIR) -DUSE_SDL_RENDERER -std=gnu++11 `sdl2-config --cflags --libs` -lSDL2_mixer
-CFLAGS=-I$(TETREEX_INCDIR) -std=gnu++11 `sdl2-config --cflags --libs` -lSDL2_mixer
+# CFLAGS=-I$(TETREEX_INCDIR) -DUSE_GPIO_INPUTS -DUSE_SDL_RENDERER -std=gnu++11 `sdl2-config --cflags --libs` -lSDL2_mixer
+CFLAGS=-I$(TETREEX_INCDIR) -DUSE_GPIO_INPUTS -std=gnu++11 `sdl2-config --cflags --libs` -lSDL2_mixer
 
 _DEPS = Tetreex.h
 DEPS = $(patsubst %,$(TETREEX_INCDIR)/%,$(_DEPS))
