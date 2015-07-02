@@ -38,7 +38,28 @@ bool Application::Initialize()
 {
 #ifdef USE_GPIO_INPUTS
 
-    const int ports[] = { Gpio07, Gpio08, Gpio09, Gpio10, Gpio11, Gpio24, Gpio25 };
+    const int portCount = 7;
+    const int ports[portCount] =
+    {
+        Gpio07, Gpio08, Gpio09, Gpio10, Gpio11, Gpio24, Gpio25
+    };
+
+    for (int p = 0; p < portCount; p++)
+    {
+        if (GpioExport(ports[p]) == -1)
+        {
+            char message[128] = { 0 };
+            snprintf(message, 128, "Could not enable GPIO pin: %d", ports[p]);
+            return false;
+        }
+
+        if (GpioDirection(ports[p], DirectionIn) == -1)
+        {
+            char message[128] = { 0 };
+            snprintf(message, 128, "Could not set direction for pin: %d", ports[p]);
+            return false;
+        }
+    }
 
 #endif
 
@@ -59,6 +80,25 @@ int Application::Run()
 
 void Application::Destroy()
 {
+#ifdef USE_GPIO_INPUTS
+
+    const int portCount = 7;
+    const int ports[portCount] =
+    {
+        Gpio07, Gpio08, Gpio09, Gpio10, Gpio11, Gpio24, Gpio25
+    };
+
+    for (int p = 0; p < portCount; p++)
+    {
+        if (GpioUnexport(ports[p]) == -1)
+        {
+            char message[128] = { 0 };
+            snprintf(message, 128, "Could not disable GPIO pin: %d", ports[p]);
+        }
+    }
+
+#endif
+
     delete mpInternalGame;
     mpInternalGame = nullptr;
 }
