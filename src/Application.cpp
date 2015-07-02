@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <iostream>
 #include "../inc/Tetreex.h"
 
 using namespace Tetreex;
@@ -50,6 +51,7 @@ bool Application::Initialize()
         {
             char message[128] = { 0 };
             snprintf(message, 128, "Could not enable GPIO pin: %d", ports[p]);
+            std::cout << message;
             return false;
         }
 
@@ -57,6 +59,7 @@ bool Application::Initialize()
         {
             char message[128] = { 0 };
             snprintf(message, 128, "Could not set direction for pin: %d", ports[p]);
+            std::cout << message;
             return false;
         }
     }
@@ -94,6 +97,7 @@ void Application::Destroy()
         {
             char message[128] = { 0 };
             snprintf(message, 128, "Could not disable GPIO pin: %d", ports[p]);
+            std::cout << message;
         }
     }
 
