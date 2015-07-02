@@ -9,11 +9,23 @@
 
 using namespace Tetreex;
 
+#ifdef USE_GPIO_INPUTS
+
 const int Application::PinBufferSize = 3;
 const int Application::DirBufferSize = 35;
 const int Application::IoBufferSize  = 30;
 const int Application::DirectionIn   = 0;
 const int Application::DirectionOut  = 1;
+
+const int Application::Gpio07 = 7;
+const int Application::Gpio08 = 8;
+const int Application::Gpio09 = 9;
+const int Application::Gpio10 = 10;
+const int Application::Gpio11 = 11;
+const int Application::Gpio24 = 24;
+const int Application::Gpio25 = 25;
+
+#endif
 
 Application::Application(Game* pGame) :
 mpInternalGame(pGame)
@@ -24,6 +36,12 @@ mpInternalGame(pGame)
 
 bool Application::Initialize()
 {
+#ifdef USE_GPIO_INPUTS
+
+    const int ports[] = { Gpio07, Gpio08, Gpio09, Gpio10, Gpio11, Gpio24, Gpio25 };
+
+#endif
+
     return true;
 }
 
@@ -44,6 +62,8 @@ void Application::Destroy()
     delete mpInternalGame;
     mpInternalGame = nullptr;
 }
+
+#ifndef USE_GPIO_INPUTS
 
 void Application::ProcessInputEvents()
 {
@@ -93,6 +113,12 @@ void Application::ProcessInputEvents()
             }
         }
     }
+}
+
+#else
+
+void Application::ProcessInputEvents()
+{
 }
 
 int Application::GpioExport(int pin)
@@ -167,3 +193,5 @@ int Application::GpioRead(int pin)
     close(fd);
     return(atoi(value_str));
 }
+
+#endif

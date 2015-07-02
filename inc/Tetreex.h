@@ -229,6 +229,9 @@ namespace Tetreex
     private:
 
         void ProcessInputEvents(void);
+
+#ifdef USE_GPIO_INPUTS
+
         int GpioExport(int pin);
         int GpioUnexport(int pin);
         int GpioDirection(int pin, int direction);
@@ -239,6 +242,17 @@ namespace Tetreex
         static const int IoBufferSize;
         static const int DirectionIn;
         static const int DirectionOut;
+
+        // GPIO for inputs
+        static const int Gpio07;
+        static const int Gpio08;
+        static const int Gpio09;
+        static const int Gpio10;
+        static const int Gpio11;
+        static const int Gpio24;
+        static const int Gpio25;
+
+#endif
 
         Game* mpInternalGame;
     };
