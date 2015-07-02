@@ -45,23 +45,25 @@ bool Application::Initialize()
         Gpio07, Gpio08, Gpio09, Gpio10, Gpio11, Gpio24, Gpio25
     };
 
+    char message[128] = { 0 };
     for (int p = 0; p < portCount; p++)
     {
         if (GpioExport(ports[p]) == -1)
         {
-            char message[128] = { 0 };
-            snprintf(message, 128, "Could not enable GPIO pin: %d", ports[p]);
+            snprintf(message, 128, "Could not enable GPIO pin: %d\n", ports[p]);
             std::cout << message;
             return false;
         }
 
         if (GpioDirection(ports[p], DirectionIn) == -1)
         {
-            char message[128] = { 0 };
-            snprintf(message, 128, "Could not set direction for pin: %d", ports[p]);
+            snprintf(message, 128, "Could not set direction for pin: %d\n", ports[p]);
             std::cout << message;
             return false;
         }
+
+        snprintf(message, 128, "Successfully configured GPIO pin: %d\n", ports[p]);
+        std::cout << message;
     }
 
 #endif
@@ -91,14 +93,17 @@ void Application::Destroy()
         Gpio07, Gpio08, Gpio09, Gpio10, Gpio11, Gpio24, Gpio25
     };
 
+    char message[128] = { 0 };
     for (int p = 0; p < portCount; p++)
     {
-        if (GpioUnexport(ports[p]) == -1)
-        {
-            char message[128] = { 0 };
-            snprintf(message, 128, "Could not disable GPIO pin: %d", ports[p]);
-            std::cout << message;
+        if (GpioUnexport(ports[p]) == -1) {
+            snprintf(message, 128, "Could not disable GPIO pin: %d\n", ports[p]);
         }
+        else {
+            snprintf(message, 128, "Successfully disabled GPIO pin: %d\n", ports[p]);
+        }
+
+        std::cout << message;
     }
 
 #endif
