@@ -25,6 +25,7 @@ const int Application::Gpio10 = 10;
 const int Application::Gpio11 = 11;
 const int Application::Gpio24 = 24;
 const int Application::Gpio25 = 25;
+const int Application::PinCount = 7;
 
 #endif
 
@@ -33,20 +34,21 @@ mpInternalGame(pGame)
 {
     if (mpInternalGame == nullptr)
         throw new std::runtime_error("Invalid 'Game *' for 'Application'");
+
+    memset(&mPinStates[0], 0, sizeof(mPinStates));
 }
 
 bool Application::Initialize()
 {
 #ifdef USE_GPIO_INPUTS
 
-    const int portCount = 7;
-    const int ports[portCount] =
+    const int ports[PinCount] =
     {
         Gpio07, Gpio08, Gpio09, Gpio10, Gpio11, Gpio24, Gpio25
     };
 
     char message[128] = { 0 };
-    for (int p = 0; p < portCount; p++)
+    for (int p = 0; p < PinCount; p++)
     {
         if (GpioExport(ports[p]) == -1)
         {
@@ -87,14 +89,13 @@ void Application::Destroy()
 {
 #ifdef USE_GPIO_INPUTS
 
-    const int portCount = 7;
-    const int ports[portCount] =
+    const int ports[PinCount] =
     {
         Gpio07, Gpio08, Gpio09, Gpio10, Gpio11, Gpio24, Gpio25
     };
 
     char message[128] = { 0 };
-    for (int p = 0; p < portCount; p++)
+    for (int p = 0; p < PinCount; p++)
     {
         if (GpioUnexport(ports[p]) == -1) {
             snprintf(message, 128, "Could not disable GPIO pin: %d\n", ports[p]);
@@ -168,6 +169,43 @@ void Application::ProcessInputEvents()
 
 void Application::ProcessInputEvents()
 {
+    const int ports[PinCount] =
+    {
+        Gpio07, Gpio08, Gpio09, Gpio10, Gpio11, Gpio24, Gpio25
+    };
+
+    char message[128] = { 0 };
+    for (int p = 0; p < PinCount; p++)
+    {
+        auto currentValue = GpioRead(ports[p]);
+        if (currentValue == mPinStates[p])
+            continue;
+
+        snprintf(message, 128, "Pin %d value: %d\n", ports[p], currentValue);
+        std::cout << message;
+
+        mPinStates[p] = currentValue;
+        if (currentValue == 0)
+            continue; // Release key, no notification.
+
+        switch (ports[p])
+        {
+            case Application::Gpio07:
+                break;
+            case Application::Gpio08:
+                break;
+            case Application::Gpio09:
+                break;
+            case Application::Gpio10:
+                break;
+            case Application::Gpio11:
+                break;
+            case Application::Gpio24:
+                break;
+            case Application::Gpio25:
+                break;
+        }
+    }
 }
 
 int Application::GpioExport(int pin)

@@ -21,6 +21,8 @@
 #ifndef Tetreex_Tetreex_h
 #define Tetreex_Tetreex_h
 
+#define USE_GPIO_INPUTS
+
 namespace Tetreex
 {
     class Board; // Forward declaration.
@@ -251,7 +253,9 @@ namespace Tetreex
         static const int Gpio11;
         static const int Gpio24;
         static const int Gpio25;
+        static const int PinCount;
 
+        int mPinStates[7];
 #endif
 
         Game* mpInternalGame;
