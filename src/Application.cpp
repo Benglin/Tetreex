@@ -195,7 +195,8 @@ void Application::ProcessInputEvents()
         switch (ports[p])
         {
             case Application::Gpio07: // Up button.
-                mpInternalGame->HandleInput(Game::Input::Escape);
+                // I do not think we want to exit the game loop in Raspberry Pi.
+                // mpInternalGame->HandleInput(Game::Input::Escape);
                 break;
             case Application::Gpio08: // Down button.
                 mpInternalGame->HandleInput(Game::Input::Down);

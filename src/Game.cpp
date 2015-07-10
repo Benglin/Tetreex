@@ -18,7 +18,6 @@ mpAudioDevice(nullptr)
 {
     mpAudioDevice = new AudioDevice();
     mpAudioDevice->LoadMediaFiles();
-
     mpBoard = new Board(16, 16, mpCanvas);
 }
 
@@ -104,6 +103,7 @@ void Game::UpdateFrame(void)
     {
         if (mpBoard->IsTopMostRowNonEmpty()) {
             mCurrentState = State::Over;
+            mpCanvas->Clear(); // Clear screen since it is over now.
             mpAudioDevice->PlayBackgroundMusic(false); // Pause music playback.
         }
         else
