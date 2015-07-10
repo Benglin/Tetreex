@@ -20,7 +20,6 @@ mpAudioDevice(nullptr)
     mpAudioDevice->LoadMediaFiles();
 
     mpBoard = new Board(16, 16, mpCanvas);
-    mpBoard->GenerateTetromino();
 }
 
 Game::~Game()
