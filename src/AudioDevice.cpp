@@ -75,7 +75,7 @@ void AudioDevice::PlayBackgroundMusic(bool play) const
         else // Music is playing...
         {
             if (play == false)
-                Mix_PausedMusic();
+                Mix_PauseMusic();
         }
     }
 }
