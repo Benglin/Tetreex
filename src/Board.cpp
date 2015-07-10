@@ -44,6 +44,11 @@ bool Board::IsGameOver(void) const
     return false;
 }
 
+bool Board::IsTopRowFilled(void) const
+{
+    return false;
+}
+
 bool Board::IsPlacementPossible(int x, int y, const Mold& mold) const
 {
     for (int my = 0, by = y; my < mold.mBoundingSize; my++, by++)
@@ -195,6 +200,10 @@ void Board::FuseActiveTetromino(void)
         delete mpActiveTetromino;
         mpActiveTetromino = nullptr;
     }
+}
+
+void Board::RemoveFilledRows(void)
+{
 }
 
 unsigned int* Board::PixelAt(int x, int y) const
