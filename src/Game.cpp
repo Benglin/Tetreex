@@ -18,7 +18,6 @@ mpAudioDevice(nullptr)
 {
     mpAudioDevice = new AudioDevice();
     mpAudioDevice->LoadMediaFiles();
-    mpAudioDevice->PlayBackgroundMusic(true);
 
     mpBoard = new Board(16, 16, mpCanvas);
     mpBoard->GenerateTetromino();
@@ -63,6 +62,7 @@ void Game::HandleInput(Game::Input input)
             // Pressing button 0 will restart the game if it's currently over.
             if (mCurrentState == State::Over) {
                 mpBoard->StartNewGame();
+                mpAudioDevice->PlayBackgroundMusic(true);
                 mCurrentState = State::InProgress;
             }
             break;
@@ -103,8 +103,10 @@ void Game::UpdateFrame(void)
     mPrevDropTime = currentTime - overshot;
     if (!mpBoard->AdvanceTetromino())
     {
-        if (mpBoard->IsTopMostRowFilled())
+        if (mpBoard->IsTopMostRowFilled()) {
             mCurrentState = State::Over;
+            mpAudioDevice->PlayBackgroundMusic(true); // Resume music playback.
+        }
         else
             mpBoard->GenerateTetromino();
     }
