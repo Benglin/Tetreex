@@ -208,7 +208,16 @@ void Board::RemoveFilledRows(void)
 
 bool Board::IsRowFilled(int row) const
 {
-    return false;
+    auto pReadPtr = PixelAt(0, row);
+    if (pReadPtr == nullptr)
+        return false;
+
+    for (int x = 0; x < mWidth; ++x) {
+        if (0x00000000 == *pReadPtr)
+            return false; // Found an empty cell.
+    }
+
+    return true; // All cells are filled.
 }
 
 unsigned int* Board::PixelAt(int x, int y) const
