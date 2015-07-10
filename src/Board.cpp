@@ -12,12 +12,11 @@ Board::Board(int width, int height, rgb_matrix::Canvas* pCanvas) :
 mWidth(width),
 mHeight(height),
 mpCanvas(pCanvas),
+mpContent(nullptr),
 mpActiveTetromino(nullptr),
 mDistribution(0, ((int)Tetromino::Type::Max - 1))
 {
-    auto elements = mWidth * mHeight;
-    mpContent = new unsigned int[elements];
-    memset(mpContent, 0, elements * sizeof(unsigned int));
+    ResetContents();
 }
 
 Board::~Board()
@@ -37,6 +36,11 @@ int Board::Width(void) const
 int Board::Height(void) const
 {
     return mHeight;
+}
+
+void Board::StartNewGame(void)
+{
+    ResetContents();
 }
 
 bool Board::IsGameOver(void) const
@@ -191,6 +195,17 @@ void Board::RefreshRegion(int x, int y, int width, int height) const
             mpCanvas->SetPixel(left + 1, top + 1, red, green, blue);
         }
     }
+}
+
+void Board::ResetContents(void)
+{
+    auto elements = mWidth * mHeight;
+
+    if (mpContent == nullptr)
+        mpContent = new unsigned int[elements];
+
+    memset(mpContent, 0, elements * sizeof(unsigned int));
+    mpCanvas->Clear(); // Clear display to empty screen.
 }
 
 void Board::FuseActiveTetromino(void)

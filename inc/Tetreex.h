@@ -145,6 +145,7 @@ namespace Tetreex
 
         int Width(void) const;
         int Height(void) const;
+        void StartNewGame(void);
         bool IsGameOver(void) const;
         bool IsTopMostRowFilled(void) const;
         bool IsPlacementPossible(int x, int y, const Mold& mold) const;
@@ -159,6 +160,7 @@ namespace Tetreex
         
     private:
 
+        void ResetContents(void);
         void FuseActiveTetromino(void);
         void RemoveFilledRows(void);
         bool IsRowFilled(int row) const;
