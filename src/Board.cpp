@@ -217,6 +217,7 @@ void Board::FuseActiveTetromino(void)
 
 void Board::CompactContent(void)
 {
+    auto didCompactLines = false;
     auto currRow = mHeight - 1;
     auto nextRow = currRow - 1;
 
@@ -236,8 +237,12 @@ void Board::CompactContent(void)
             nextRow = nextRow - 1;
         }
 
+        didCompactLines = true;
         nextRow = currRow - 1; // Reset next row cursor.
     }
+
+    if (didCompactLines) // Refresh only at least a line was compacted.
+        this->RefreshRegion(0, 0, mWidth, mHeight);
 }
 
 void Board::MoveRowContentDownward(int row)
