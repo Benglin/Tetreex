@@ -146,10 +146,8 @@ namespace Tetreex
         int Width(void) const;
         int Height(void) const;
         void StartNewGame(void);
-        bool IsGameOver(void) const;
         bool IsTopMostRowNonEmpty(void) const;
         bool IsPlacementPossible(int x, int y, const Mold& mold) const;
-        bool HasActiveTetromino(void) const;
         void SetColor(int x, int y, unsigned int color, bool permanent);
 
         bool AdvanceTetromino(void);
@@ -162,7 +160,8 @@ namespace Tetreex
 
         void ResetContents(void);
         void FuseActiveTetromino(void);
-        void RemoveFilledRows(void);
+        void CompactContent(void);
+        void MoveRowContentDownward(int row);
         bool IsRowFilled(int row) const;
         unsigned int* PixelAt(int x, int y) const;
         unsigned int* PixelAtUnsafe(int x, int y) const;

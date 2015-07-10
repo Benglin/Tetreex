@@ -43,11 +43,6 @@ void Board::StartNewGame(void)
     ResetContents();
 }
 
-bool Board::IsGameOver(void) const
-{
-    return false;
-}
-
 bool Board::IsTopMostRowNonEmpty(void) const
 {
     auto pReadPointer = PixelAt(0, 0);
@@ -91,11 +86,6 @@ bool Board::IsPlacementPossible(int x, int y, const Mold& mold) const
     }
 
     return true;
-}
-
-bool Board::HasActiveTetromino(void) const
-{
-    return mpActiveTetromino != nullptr;
 }
 
 void Board::SetColor(int x, int y, unsigned int color, bool permanent)
@@ -221,10 +211,41 @@ void Board::FuseActiveTetromino(void)
         delete mpActiveTetromino;
         mpActiveTetromino = nullptr;
     }
+
+    this->CompactContent();
 }
 
-void Board::RemoveFilledRows(void)
+void Board::CompactContent(void)
 {
+    auto currRow = mHeight - 1;
+    auto nextRow = currRow - 1;
+
+    while (currRow > 0)
+    {
+        if (!IsRowFilled(currRow))
+        {
+            currRow--;
+            nextRow--;
+            continue;
+        }
+
+        // Current row is filled, start moving next rows in.
+        while (nextRow >= 0)
+        {
+            MoveRowContentDownward(nextRow);
+            nextRow = nextRow - 1;
+        }
+
+        nextRow = currRow - 1; // Reset next row cursor.
+    }
+}
+
+void Board::MoveRowContentDownward(int row)
+{
+    auto pReadPointer = PixelAt(0, row);
+    auto pWritePointer = PixelAt(0, row + 1);
+    auto bytes = mWidth * sizeof(unsigned int);
+    memcpy(pWritePointer, pReadPointer, bytes);
 }
 
 bool Board::IsRowFilled(int row) const
