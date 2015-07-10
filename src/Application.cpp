@@ -35,7 +35,11 @@ mpInternalGame(pGame)
     if (mpInternalGame == nullptr)
         throw new std::runtime_error("Invalid 'Game *' for 'Application'");
 
+#ifdef USE_GPIO_INPUTS
+
     memset(&mPinStates[0], 0, sizeof(mPinStates));
+
+#endif
 }
 
 bool Application::Initialize()

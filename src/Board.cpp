@@ -83,15 +83,6 @@ bool Board::HasActiveTetromino(void) const
     return mpActiveTetromino != nullptr;
 }
 
-void Board::FuseActiveTetromino(void)
-{
-    if (mpActiveTetromino != nullptr) {
-        mpActiveTetromino->FuseOnBoard();
-        delete mpActiveTetromino;
-        mpActiveTetromino = nullptr;
-    }
-}
-
 void Board::SetColor(int x, int y, unsigned int color, bool permanent)
 {
     color = permanent ? MAKEPERMANENT(color) : MAKETEMPORARY(color);
@@ -194,6 +185,15 @@ void Board::RefreshRegion(int x, int y, int width, int height) const
             mpCanvas->SetPixel(left + 0, top + 1, red, green, blue);
             mpCanvas->SetPixel(left + 1, top + 1, red, green, blue);
         }
+    }
+}
+
+void Board::FuseActiveTetromino(void)
+{
+    if (mpActiveTetromino != nullptr) {
+        mpActiveTetromino->FuseOnBoard();
+        delete mpActiveTetromino;
+        mpActiveTetromino = nullptr;
     }
 }
 

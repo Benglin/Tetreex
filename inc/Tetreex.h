@@ -148,7 +148,6 @@ namespace Tetreex
         bool IsGameOver(void) const;
         bool IsPlacementPossible(int x, int y, const Mold& mold) const;
         bool HasActiveTetromino(void) const;
-        void FuseActiveTetromino(void);
         void SetColor(int x, int y, unsigned int color, bool permanent);
 
         bool AdvanceTetromino(void);
@@ -159,6 +158,7 @@ namespace Tetreex
         
     private:
 
+        void FuseActiveTetromino(void);
         unsigned int* PixelAt(int x, int y) const;
         unsigned int* PixelAtUnsafe(int x, int y) const;
 
