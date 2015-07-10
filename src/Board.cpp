@@ -97,8 +97,9 @@ void Board::SetColor(int x, int y, unsigned int color, bool permanent)
         *pPixel = color;
 }
 
-bool Board::AdvanceTetromino(void)
+bool Board::AdvanceTetromino(bool& compactDidTakePlace)
 {
+    compactDidTakePlace = false;
     if (mpActiveTetromino == nullptr)
         return false; // Nothing to advance.
 
@@ -107,7 +108,7 @@ bool Board::AdvanceTetromino(void)
     else
     {
         // Cannot move further.
-        this->FuseActiveTetromino();
+        FuseActiveTetromino(compactDidTakePlace);
     }
 
     // If there's no more active tetromino, then it means it's
@@ -204,7 +205,7 @@ void Board::ResetContents(void)
     mpCanvas->Clear(); // Clear display to empty screen.
 }
 
-void Board::FuseActiveTetromino(void)
+void Board::FuseActiveTetromino(bool& compactDidTakePlace)
 {
     if (mpActiveTetromino != nullptr) {
         mpActiveTetromino->FuseOnBoard();
@@ -212,10 +213,10 @@ void Board::FuseActiveTetromino(void)
         mpActiveTetromino = nullptr;
     }
 
-    this->CompactContent();
+    compactDidTakePlace = CompactContent();
 }
 
-void Board::CompactContent(void)
+bool Board::CompactContent(void)
 {
     auto didCompactLines = false;
     auto currRow = mHeight - 1;
@@ -243,6 +244,8 @@ void Board::CompactContent(void)
 
     if (didCompactLines) // Refresh only at least a line was compacted.
         this->RefreshRegion(0, 0, mWidth, mHeight);
+
+    return didCompactLines;
 }
 
 void Board::MoveRowContentDownward(int row)

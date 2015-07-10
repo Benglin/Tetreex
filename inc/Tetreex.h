@@ -150,7 +150,7 @@ namespace Tetreex
         bool IsPlacementPossible(int x, int y, const Mold& mold) const;
         void SetColor(int x, int y, unsigned int color, bool permanent);
 
-        bool AdvanceTetromino(void);
+        bool AdvanceTetromino(bool& compactDidTakePlace);
         bool MoveTetromino(Tetromino::Direction direction);
         bool RotateTetromino(Tetromino::Rotation rotation);
         void GenerateTetromino(void);
@@ -159,8 +159,8 @@ namespace Tetreex
     private:
 
         void ResetContents(void);
-        void FuseActiveTetromino(void);
-        void CompactContent(void);
+        void FuseActiveTetromino(bool& compactDidTakePlace);
+        bool CompactContent(void);
         void MoveRowContentDownward(int row);
         bool IsRowFilled(int row) const;
         unsigned int* PixelAt(int x, int y) const;
@@ -211,6 +211,8 @@ namespace Tetreex
 
         static const double MinFrameTime;
         static const double DropInterval;
+        static const double IntervalChangeAmount;
+        static const double MinDropInterval;
 
         double mPrevDropTime;
         double mDropInterval;

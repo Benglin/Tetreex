@@ -4,8 +4,10 @@
 
 using namespace Tetreex;
 
-const double Game::MinFrameTime = 40.0;  // 40ms per frame = 25 fps.
-const double Game::DropInterval = 500.0; // Starting drop time of 500ms.
+const double Game::MinFrameTime = 40.0;         // 40ms per frame = 25 fps.
+const double Game::DropInterval = 400.0;        // Starting drop time of 400ms.
+const double Game::IntervalChangeAmount = 20.0; // Amount of ms to speed up.
+const double Game::MinDropInterval = 100.0;     // Lowest drop interval.
 
 Game::Game(rgb_matrix::Canvas* pCanvas) :
 mpCanvas(pCanvas),
@@ -62,6 +64,7 @@ void Game::HandleInput(Game::Input input)
                 mpBoard->StartNewGame();
                 mpAudioDevice->PlayBackgroundMusic(true);
                 mCurrentState = State::InProgress;
+                mDropInterval = DropInterval; // Reset drop interval.
             }
             break;
 
@@ -98,9 +101,17 @@ void Game::UpdateFrame(void)
     if (overshot > mDropInterval)
         overshot = mDropInterval;
 
+    auto compactDidTakePlace = false;
     mPrevDropTime = currentTime - overshot;
-    if (!mpBoard->AdvanceTetromino())
+    if (!mpBoard->AdvanceTetromino(compactDidTakePlace))
     {
+        if (compactDidTakePlace)
+        {
+            mDropInterval -= IntervalChangeAmount; // Speed up after each clear.
+            if (mDropInterval < MinDropInterval)
+                mDropInterval = MinDropInterval;
+        }
+
         if (mpBoard->IsTopMostRowNonEmpty()) {
             mCurrentState = State::Over;
             mpCanvas->Clear(); // Clear screen since it is over now.
