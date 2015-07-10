@@ -79,7 +79,7 @@ bool Application::Initialize()
 
 int Application::Run()
 {
-    while (mpInternalGame->CurrentState() != Game::State::Over)
+    while (mpInternalGame->CurrentState() != Game::State::Terminated)
     {
         ProcessInputEvents();
         mpInternalGame->UpdateFrame(); // Update frame till the game's over.

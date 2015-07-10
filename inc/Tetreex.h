@@ -180,7 +180,8 @@ namespace Tetreex
         enum class State : unsigned int
         {
             None = 0,
-            Over = 1
+            Over = 1,
+            Terminated = 2
         };
         
         enum class Input : unsigned int

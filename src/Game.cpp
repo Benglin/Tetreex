@@ -41,7 +41,7 @@ void Game::HandleInput(Game::Input input)
     switch (input)
     {
         case Game::Input::Escape:
-            mCurrentState = Game::State::Over;
+            mCurrentState = Game::State::Terminated;
             break;
 
         case Game::Input::Left:
