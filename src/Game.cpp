@@ -86,10 +86,8 @@ void Game::HandleInput(Game::Input input)
 
 void Game::UpdateFrame(void)
 {
-    if (mCurrentState != State::InProgress) {
-        sleep(100);
+    if (mCurrentState != State::InProgress)
         return; // Game is not running, no frame update.
-    }
 
     timeval tv;
     gettimeofday(&tv, nullptr);

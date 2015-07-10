@@ -14,6 +14,7 @@ mHeight(height),
 mpCanvas(pCanvas),
 mpContent(nullptr),
 mpActiveTetromino(nullptr),
+mGenerator((unsigned int )time(nullptr)),
 mDistribution(0, ((int)Tetromino::Type::Max - 1))
 {
     ResetContents();
@@ -134,8 +135,6 @@ bool Board::RotateTetromino(Tetromino::Rotation rotation)
     return false; // Nothing changes internally.
 }
 
-int gtype = 0;
-
 void Board::GenerateTetromino(void)
 {
     if (mpActiveTetromino != nullptr) {
@@ -143,10 +142,7 @@ void Board::GenerateTetromino(void)
         return;
     }
 
-    if (gtype == 7)
-        gtype = 0;
-
-    auto type = ((Tetromino::Type) gtype++);
+    auto type = ((Tetromino::Type) mDistribution(mGenerator));
     mpActiveTetromino = new Tetromino(this, type);
     mpActiveTetromino->Move(Tetromino::Direction::Down);
 }
