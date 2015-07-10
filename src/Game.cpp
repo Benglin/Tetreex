@@ -1,5 +1,6 @@
 
 #include <sys/time.h>
+#include <unistd.h>
 #include "../inc/Tetreex.h"
 
 using namespace Tetreex;
@@ -85,8 +86,10 @@ void Game::HandleInput(Game::Input input)
 
 void Game::UpdateFrame(void)
 {
-    if (mCurrentState != State::InProgress)
+    if (mCurrentState != State::InProgress) {
+        sleep(100);
         return; // Game is not running, no frame update.
+    }
 
     timeval tv;
     gettimeofday(&tv, nullptr);
