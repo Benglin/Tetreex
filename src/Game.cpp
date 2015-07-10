@@ -103,7 +103,7 @@ void Game::UpdateFrame(void)
     mPrevDropTime = currentTime - overshot;
     if (!mpBoard->AdvanceTetromino())
     {
-        if (mpBoard->IsTopMostRowFilled()) {
+        if (mpBoard->IsTopMostRowNonEmpty()) {
             mCurrentState = State::Over;
             mpAudioDevice->PlayBackgroundMusic(true); // Resume music playback.
         }

@@ -48,9 +48,15 @@ bool Board::IsGameOver(void) const
     return false;
 }
 
-bool Board::IsTopMostRowFilled(void) const
+bool Board::IsTopMostRowNonEmpty(void) const
 {
-    return IsRowFilled(0);
+    auto pReadPointer = PixelAt(0, 0);
+    for (int x = 0; x < mWidth; ++x) {
+        if (0x00000000 != pReadPointer[x])
+            return true; // Found a non-empty cell.
+    }
+
+    return false;
 }
 
 bool Board::IsPlacementPossible(int x, int y, const Mold& mold) const
@@ -223,12 +229,12 @@ void Board::RemoveFilledRows(void)
 
 bool Board::IsRowFilled(int row) const
 {
-    auto pReadPtr = PixelAt(0, row);
-    if (pReadPtr == nullptr)
+    auto pReadPointer = PixelAt(0, row);
+    if (pReadPointer == nullptr)
         return false;
 
     for (int x = 0; x < mWidth; ++x) {
-        if (0x00000000 == *pReadPtr)
+        if (0x00000000 == pReadPointer[x])
             return false; // Found an empty cell.
     }
 
