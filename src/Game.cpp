@@ -90,7 +90,7 @@ void Game::UpdateFrame(void)
     mPrevDropTime = currentTime - overshot;
     if (!mpBoard->AdvanceTetromino())
     {
-        if (mpBoard->IsTopRowFilled())
+        if (mpBoard->IsTopMostRowFilled())
             mCurrentState = State::Over;
         else
             mpBoard->GenerateTetromino();

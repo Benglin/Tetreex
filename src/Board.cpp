@@ -44,9 +44,9 @@ bool Board::IsGameOver(void) const
     return false;
 }
 
-bool Board::IsTopRowFilled(void) const
+bool Board::IsTopMostRowFilled(void) const
 {
-    return false;
+    return IsRowFilled(0);
 }
 
 bool Board::IsPlacementPossible(int x, int y, const Mold& mold) const
@@ -204,6 +204,11 @@ void Board::FuseActiveTetromino(void)
 
 void Board::RemoveFilledRows(void)
 {
+}
+
+bool Board::IsRowFilled(int row) const
+{
+    return false;
 }
 
 unsigned int* Board::PixelAt(int x, int y) const
