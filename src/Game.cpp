@@ -105,7 +105,7 @@ void Game::UpdateFrame(void)
     {
         if (mpBoard->IsTopMostRowNonEmpty()) {
             mCurrentState = State::Over;
-            mpAudioDevice->PlayBackgroundMusic(true); // Resume music playback.
+            mpAudioDevice->PlayBackgroundMusic(false); // Pause music playback.
         }
         else
             mpBoard->GenerateTetromino();
