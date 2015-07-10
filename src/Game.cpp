@@ -12,7 +12,7 @@ mpCanvas(pCanvas),
 mVisualInvalidated(false),
 mPrevDropTime(0),
 mDropInterval(Game::DropInterval),
-mCurrentState(State::None),
+mCurrentState(State::Over),
 mpBoard(nullptr),
 mpAudioDevice(nullptr)
 {
@@ -45,26 +45,36 @@ void Game::HandleInput(Game::Input input)
             break;
 
         case Game::Input::Left:
-            mVisualInvalidated = mpBoard->MoveTetromino(Tetromino::Direction::Left);
+            if (mCurrentState == State::InProgress)
+                mVisualInvalidated = mpBoard->MoveTetromino(Tetromino::Direction::Left);
             break;
 
         case Game::Input::Right:
-            mVisualInvalidated = mpBoard->MoveTetromino(Tetromino::Direction::Right);
+            if (mCurrentState == State::InProgress)
+                mVisualInvalidated = mpBoard->MoveTetromino(Tetromino::Direction::Right);
             break;
 
         case Game::Input::Down:
-            mVisualInvalidated = mpBoard->MoveTetromino(Tetromino::Direction::Down);
+            if (mCurrentState == State::InProgress)
+                mVisualInvalidated = mpBoard->MoveTetromino(Tetromino::Direction::Down);
             break;
 
         case Game::Input::Button0:
+            // Pressing button 0 will restart the game if it's currently over.
+            if (mCurrentState == State::Over) {
+                mpBoard->StartNewGame();
+                mCurrentState = State::InProgress;
+            }
             break;
 
         case Game::Input::Button1:
-            mVisualInvalidated = mpBoard->RotateTetromino(Tetromino::Rotation::CounterClockWise);
+            if (mCurrentState == State::InProgress)
+                mVisualInvalidated = mpBoard->RotateTetromino(Tetromino::Rotation::CounterClockWise);
             break;
 
         case Game::Input::Button2:
-            mVisualInvalidated = mpBoard->RotateTetromino(Tetromino::Rotation::ClockWise);
+            if (mCurrentState == State::InProgress)
+                mVisualInvalidated = mpBoard->RotateTetromino(Tetromino::Rotation::ClockWise);
             break;
 
         default:

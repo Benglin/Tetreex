@@ -182,8 +182,8 @@ namespace Tetreex
 
         enum class State : unsigned int
         {
-            None = 0,
-            Over = 1,
+            Over = 0,
+            InProgress = 1,
             Terminated = 2
         };
         
