@@ -60,16 +60,22 @@ void AudioDevice::PlayBackgroundMusic(bool play) const
     if (mpBackgroundMusic == nullptr)
         return;
 
-    if (Mix_PlayingMusic() == 0)
+    if (play && (Mix_PlayingMusic() == 0))
     {
         // There is no music playing...
         Mix_PlayMusic(mpBackgroundMusic, -1); // Loop till it is stopped.
     }
     else
     {
-        if (Mix_PausedMusic() == 1)
-            Mix_ResumeMusic();
-        else
-            Mix_PausedMusic();
+        if (Mix_PausedMusic() == 1) // Music is paused...
+        {
+            if (play)
+                Mix_ResumeMusic();
+        }
+        else // Music is playing...
+        {
+            if (play == false)
+                Mix_PausedMusic();
+        }
     }
 }
