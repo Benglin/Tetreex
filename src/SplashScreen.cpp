@@ -86,9 +86,9 @@ bool SplashScreen::UpdateFrame(double deltaTimeMs)
     for (auto y = 0; y < DisplayWidth; y++, pRowPointer += mpSurface->pitch)
     {
         auto p = pRowPointer;
-        for (auto x = startX; x < visibleColumns; x++, p += 4)
+        for (auto x = 0; x < visibleColumns; x++, p += 4)
         {
-            mpCanvas->SetPixel(x, y, p[2], p[1], p[0]);
+            mpCanvas->SetPixel(x + startX, y, p[2], p[1], p[0]);
         }
     }
 
