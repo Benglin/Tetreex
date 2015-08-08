@@ -73,6 +73,17 @@ namespace Tetreex
 
         Mix_Music* mpBackgroundMusic;
     };
+
+    class SplashScreen
+    {
+    public:
+        SplashScreen(rgb_matrix::Canvas* pCanvas);
+        ~SplashScreen(void);
+
+    private:
+
+        rgb_matrix::Canvas* mpCanvas;
+    };
     
     struct Mold
     {

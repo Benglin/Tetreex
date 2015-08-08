@@ -10,6 +10,7 @@
 		55147EB01B2888810064D8DE /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55147EAF1B2888810064D8DE /* SDL2.framework */; };
 		55147EB91B288AF30064D8DE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55147EB71B288AF30064D8DE /* main.cpp */; };
 		55147EBC1B288B320064D8DE /* Tetreex.h in Sources */ = {isa = PBXBuildFile; fileRef = 55147EBB1B288B320064D8DE /* Tetreex.h */; };
+		55202A8C1B765F58002DF0A3 /* SplashScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55202A8B1B765F58002DF0A3 /* SplashScreen.cpp */; };
 		5568D2061B3A92AA000AB1F8 /* AudioDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5568D2021B3A92AA000AB1F8 /* AudioDevice.cpp */; };
 		5568D2071B3A92AA000AB1F8 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5568D2031B3A92AA000AB1F8 /* Game.cpp */; };
 		5568D2081B3A92AA000AB1F8 /* PixelBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5568D2051B3A92AA000AB1F8 /* PixelBuffer.cpp */; };
@@ -39,6 +40,7 @@
 		55147EB21B28892C0064D8DE /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; name = src; path = ../src; sourceTree = "<group>"; };
 		55147EB71B288AF30064D8DE /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../src/main.cpp; sourceTree = "<group>"; };
 		55147EBB1B288B320064D8DE /* Tetreex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Tetreex.h; path = ../inc/Tetreex.h; sourceTree = "<group>"; };
+		55202A8B1B765F58002DF0A3 /* SplashScreen.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SplashScreen.cpp; path = ../src/SplashScreen.cpp; sourceTree = "<group>"; };
 		554C3A621B288C26003F7D41 /* matrix */ = {isa = PBXFileReference; lastKnownFileType = folder; name = matrix; path = ../matrix; sourceTree = "<group>"; };
 		5568D2021B3A92AA000AB1F8 /* AudioDevice.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = AudioDevice.cpp; path = ../src/AudioDevice.cpp; sourceTree = "<group>"; };
 		5568D2031B3A92AA000AB1F8 /* Game.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Game.cpp; path = ../src/Game.cpp; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 		55147E9C1B2887220064D8DE = {
 			isa = PBXGroup;
 			children = (
+				55202A8B1B765F58002DF0A3 /* SplashScreen.cpp */,
 				5568D20F1B3AA706000AB1F8 /* Tetromino.cpp */,
 				5568D20D1B3A9646000AB1F8 /* Application.cpp */,
 				5568D20A1B3A95A5000AB1F8 /* Board.cpp */,
@@ -150,6 +153,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55202A8C1B765F58002DF0A3 /* SplashScreen.cpp in Sources */,
 				5568D2101B3AA706000AB1F8 /* Tetromino.cpp in Sources */,
 				5568D20E1B3A9646000AB1F8 /* Application.cpp in Sources */,
 				5568D20C1B3A95A5000AB1F8 /* Board.cpp in Sources */,
