@@ -85,6 +85,9 @@ namespace Tetreex
 
     private:
 
+        static const double ScrollIntervalMs;
+
+        double mAccumTimeDiff;
         SDL_Surface* mpSurface;
         rgb_matrix::Canvas* mpCanvas;
     };
