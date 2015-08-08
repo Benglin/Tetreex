@@ -15,7 +15,7 @@ mpCanvas(pCanvas),
 mVisualInvalidated(false),
 mPrevDropTime(0),
 mDropInterval(Game::DropInterval),
-mCurrentState(State::Over),
+mCurrentState(State::SplashScreen),
 mpBoard(nullptr),
 mpAudioDevice(nullptr)
 {
@@ -61,7 +61,7 @@ void Game::HandleInput(Game::Input input)
 
         case Game::Input::Button0:
             // Pressing button 0 will restart the game if it's currently over.
-            if (mCurrentState == State::Over) {
+            if (mCurrentState == State::SplashScreen) {
                 mpBoard->StartNewGame();
                 mpAudioDevice->PlayBackgroundMusic(true);
                 mCurrentState = State::InProgress;
@@ -114,7 +114,7 @@ void Game::UpdateFrame(void)
         }
 
         if (mpBoard->IsTopMostRowNonEmpty()) {
-            mCurrentState = State::Over;
+            mCurrentState = State::SplashScreen;
             mpCanvas->Clear(); // Clear screen since it is over now.
             mpAudioDevice->PlayBackgroundMusic(false); // Pause music playback.
         }
