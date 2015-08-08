@@ -85,8 +85,10 @@ namespace Tetreex
 
     private:
 
+        static const int DisplayWidth;
         static const double ScrollIntervalMs;
 
+        int mCurrentWindow;
         double mAccumTimeDiff;
         SDL_Surface* mpSurface;
         rgb_matrix::Canvas* mpCanvas;
