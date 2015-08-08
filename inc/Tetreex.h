@@ -214,7 +214,7 @@ namespace Tetreex
         ~Game(void);
 
         void HandleInput(Game::Input input);
-        void UpdateFrame(void);
+        void UpdateFrame(double msSinceLastFrame);
         void RenderFrame(void);
         State CurrentState(void) const;
 
@@ -225,7 +225,7 @@ namespace Tetreex
         static const double IntervalChangeAmount;
         static const double MinDropInterval;
 
-        double mPrevDropTime;
+        double mAccumTimeDiff;
         double mDropInterval;
         bool mVisualInvalidated;
 
@@ -233,6 +233,7 @@ namespace Tetreex
         State mCurrentState;
         Board* mpBoard;
         AudioDevice* mpAudioDevice;
+        SplashScreen* mpSplashScreen;
     };
 
     class Application
@@ -274,6 +275,7 @@ namespace Tetreex
         int mPinStates[7];
 #endif
 
+        double mPrevFrameTime;
         Game* mpInternalGame;
     };
 }

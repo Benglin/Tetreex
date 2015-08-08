@@ -1,6 +1,7 @@
 
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <sys/time.h>
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -30,6 +31,7 @@ const int Application::PinCount = 7;
 #endif
 
 Application::Application(Game* pGame) :
+mPrevFrameTime(0.0),
 mpInternalGame(pGame)
 {
     if (mpInternalGame == nullptr)
@@ -81,8 +83,14 @@ int Application::Run()
 {
     while (mpInternalGame->CurrentState() != Game::State::Terminated)
     {
+        timeval tv;
+        gettimeofday(&tv, nullptr);
+        double currentTime = ((tv.tv_sec * 1000.0) + (tv.tv_usec * (1.0 / 1000.0)));
+        double deltaTimeMs = currentTime - mPrevFrameTime;
+        mPrevFrameTime = currentTime;
+
         ProcessInputEvents();
-        mpInternalGame->UpdateFrame(); // Update frame till the game's over.
+        mpInternalGame->UpdateFrame(deltaTimeMs); // Update frame till the game's over.
         mpInternalGame->RenderFrame();
     }
 

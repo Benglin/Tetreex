@@ -1,5 +1,4 @@
 
-#include <sys/time.h>
 #include <unistd.h>
 #include "../inc/Tetreex.h"
 
@@ -13,7 +12,7 @@ const double Game::MinDropInterval = 100.0;     // Lowest drop interval.
 Game::Game(rgb_matrix::Canvas* pCanvas) :
 mpCanvas(pCanvas),
 mVisualInvalidated(false),
-mPrevDropTime(0),
+mAccumTimeDiff(0.0),
 mDropInterval(Game::DropInterval),
 mCurrentState(State::SplashScreen),
 mpBoard(nullptr),
@@ -22,10 +21,15 @@ mpAudioDevice(nullptr)
     mpAudioDevice = new AudioDevice();
     mpAudioDevice->LoadMediaFiles();
     mpBoard = new Board(16, 16, mpCanvas);
+
+    mpSplashScreen = new SplashScreen(mpCanvas);
 }
 
 Game::~Game()
 {
+    delete mpSplashScreen;
+    mpSplashScreen = nullptr;
+
     delete mpBoard;
     mpBoard = nullptr;
 
@@ -65,6 +69,7 @@ void Game::HandleInput(Game::Input input)
                 mpBoard->StartNewGame();
                 mpAudioDevice->PlayBackgroundMusic(true);
                 mCurrentState = State::InProgress;
+                mAccumTimeDiff = 0.0;
                 mDropInterval = DropInterval; // Reset drop interval.
             }
             break;
@@ -84,26 +89,21 @@ void Game::HandleInput(Game::Input input)
     }
 }
 
-void Game::UpdateFrame(void)
+void Game::UpdateFrame(double deltaTimeMs)
 {
     if (mCurrentState != State::InProgress)
         return; // Game is not running, no frame update.
 
-    timeval tv;
-    gettimeofday(&tv, nullptr);
-    double currentTime = ((tv.tv_sec * 1000.0) + (tv.tv_usec * (1.0 / 1000.0)));
-    const double difference = currentTime - mPrevDropTime;
-
-    if (difference < mDropInterval)
+    mAccumTimeDiff = mAccumTimeDiff + deltaTimeMs;
+    if (mAccumTimeDiff < mDropInterval)
         return; // Too soon, come back later.
 
     // Making sure that we don't overshoot by a lot.
-    double overshot = difference - mDropInterval;
-    if (overshot > mDropInterval)
-        overshot = mDropInterval;
+    mAccumTimeDiff = mAccumTimeDiff - mDropInterval;
+    if (mAccumTimeDiff > mDropInterval)
+        mAccumTimeDiff = mDropInterval;
 
     auto compactDidTakePlace = false;
-    mPrevDropTime = currentTime - overshot;
     if (!mpBoard->AdvanceTetromino(compactDidTakePlace))
     {
         if (compactDidTakePlace)
