@@ -45,7 +45,12 @@ AudioDevice::~AudioDevice()
 
 bool AudioDevice::LoadMediaFiles()
 {
+#ifdef __APPLE__
+    mpBackgroundMusic = Mix_LoadMUS("audio/background.ogg");
+#else
     mpBackgroundMusic = Mix_LoadMUS("/home/pi/projects/Tetreex/audio/background.ogg");
+#endif
+
     if (mpBackgroundMusic == nullptr)
     {
         std::cout << "Audio loading failed: background.ogg\n";

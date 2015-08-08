@@ -20,7 +20,7 @@
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>25BC19AB9FB4F4C5140CFC45DB24FE2DEA3E8D0E</key>
-		<string>../../..matrix</string>
+		<string>../../..matrix/</string>
 		<key>EDEF02D239D8EAC64ECBDCE99DC05E0588FA2C72</key>
 		<string>../../..</string>
 	</dict>
@@ -36,17 +36,17 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>EDEF02D239D8EAC64ECBDCE99DC05E0588FA2C72</string>
+			<string>25BC19AB9FB4F4C5140CFC45DB24FE2DEA3E8D0E</string>
 			<key>IDESourceControlWCCName</key>
-			<string>Tetreex</string>
+			<string>matrix</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>25BC19AB9FB4F4C5140CFC45DB24FE2DEA3E8D0E</string>
+			<string>EDEF02D239D8EAC64ECBDCE99DC05E0588FA2C72</string>
 			<key>IDESourceControlWCCName</key>
-			<string>Tetreexmatrix</string>
+			<string>Tetreex</string>
 		</dict>
 	</array>
 </dict>
