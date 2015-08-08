@@ -120,6 +120,7 @@ void Game::UpdateFrame(double deltaTimeMs)
 
         if (mpBoard->IsTopMostRowNonEmpty()) {
             mCurrentState = State::SplashScreen;
+            mpSplashScreen->ResetScrollPosition();
             mpCanvas->Clear(); // Clear screen since it is over now.
             mpAudioDevice->PlayBackgroundMusic(false); // Pause music playback.
         }

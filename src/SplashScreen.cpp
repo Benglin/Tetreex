@@ -44,6 +44,12 @@ SplashScreen::~SplashScreen(void)
     }
 }
 
+void SplashScreen::ResetScrollPosition(void)
+{
+    mAccumTimeDiff = 0.0;
+    mCurrentWindow = -DisplayWidth;
+}
+
 bool SplashScreen::UpdateFrame(double deltaTimeMs)
 {
     if (mpSurface == nullptr)

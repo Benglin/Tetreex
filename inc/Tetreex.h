@@ -81,6 +81,7 @@ namespace Tetreex
         SplashScreen(rgb_matrix::Canvas* pCanvas);
         ~SplashScreen(void);
 
+        void ResetScrollPosition(void);
         bool UpdateFrame(double deltaTimeMs);
 
     private:
