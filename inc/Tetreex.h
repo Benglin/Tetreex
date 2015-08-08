@@ -80,6 +80,8 @@ namespace Tetreex
         SplashScreen(rgb_matrix::Canvas* pCanvas);
         ~SplashScreen(void);
 
+        bool UpdateFrame(double deltaTimeMs);
+
     private:
 
         rgb_matrix::Canvas* mpCanvas;
@@ -214,7 +216,7 @@ namespace Tetreex
         ~Game(void);
 
         void HandleInput(Game::Input input);
-        void UpdateFrame(double msSinceLastFrame);
+        void UpdateFrame(double deltaTimeMs);
         void RenderFrame(void);
         State CurrentState(void) const;
 

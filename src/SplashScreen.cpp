@@ -11,3 +11,8 @@ mpCanvas(pCanvas)
 SplashScreen::~SplashScreen(void)
 {
 }
+
+bool SplashScreen::UpdateFrame(double deltaTimeMs)
+{
+    return false; // No visual update required.
+}

@@ -91,6 +91,11 @@ void Game::HandleInput(Game::Input input)
 
 void Game::UpdateFrame(double deltaTimeMs)
 {
+    if (mCurrentState == State::SplashScreen) {
+        mVisualInvalidated = mpSplashScreen->UpdateFrame(deltaTimeMs);
+        return;
+    }
+
     if (mCurrentState != State::InProgress)
         return; // Game is not running, no frame update.
 
