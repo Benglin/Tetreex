@@ -94,7 +94,11 @@ bool SplashScreen::UpdateFrame(double deltaTimeMs)
         auto p = pRowPointer;
         for (auto x = 0; x < visibleColumns; x++, p += 4)
         {
+#ifdef __APPLE__
             mpCanvas->SetPixel(x + startX, y, p[2], p[1], p[0]);
+#else
+            mpCanvas->SetPixel(x + startX, y, p[0], p[1], p[2]);
+#endif
         }
     }
 
