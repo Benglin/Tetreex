@@ -9,11 +9,12 @@
 #include <stdexcept>
 #include <random>
 #include "SDL2/SDL.h"
-#include "SDL2_image/SDL_image.h"
 
 #ifdef __APPLE__
+#include "SDL2_image/SDL_image.h"
 #include "SDL2_mixer/SDL_mixer.h"
 #else
+#include "SDL_image.h"
 #include "SDL_mixer.h"
 #endif
 
